@@ -1,1 +1,3 @@
-Olympus server management system
+Olympus Server Management System
+
+The way this program works is there are two server program, a root server that allways has a static IP address and a 
