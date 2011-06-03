@@ -1,2 +1,7 @@
-This is the node server, it is a computer being moinitored.
-The code running on this computer is
+This is the node server program. it is on a computer being moinitored.
+The code running on this computer is writen in python so that is can be portable on any
+machine whithout having the plugin developers having to write plugins for specific
+operating systems and preventing us form having to write our own language to be compiled
+on the remote computer. We will also have a headder file for creating plugins that will
+contain functions to easily communicate with the root computer without much knolage of
+how it works.
