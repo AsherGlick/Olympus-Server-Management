@@ -1,0 +1,4 @@
+The plugins folder is where all of the remote server's plugins will be stored.
+When the remote server starts it will be able to look through all the plugins in
+the folder and start running all of them. There is no need to add them to a
+database because that is taken care of by the filesystem

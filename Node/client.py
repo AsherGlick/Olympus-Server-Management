@@ -22,9 +22,8 @@ while 1:
             continue
         break
     if s is None:
-        print 'Could not connect to root server\nRetrying in 10 seconds'
-        print 'delaying'
-        time.sleep(10)
+        print 'Could not connect to root server, Retrying in 10 seconds'
+        time.sleep(30)
         continue
     else:
         break
