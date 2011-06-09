@@ -25,19 +25,23 @@ from stat import *
 import time
 
 # load plugins
-print '\n--- plugin list ---'
 fileList = os.listdir('./plugins');
-for f in os.listdir('./plugins'):
-  if (f is " PLUGINS "):
-    print "hello world"
-  print f
+for f in fileList:
+  if f[len(f)-3:len(f)] == ".py": # does the file have a python extention
+    #print f
+    pass # pass is a null operation
+  else:
+    fileList.remove(f) # purge all non-python files
  
-print '--- end plugin list ---\n'
 
-print "loaded", len(fileList), "plugins"
+for f in fileList:
+  # Here is where a new process would be created for each plugin
+  print "found", f, "as a plugin"
+  
+print "found", len(fileList), "plugins"
 
-# connect to remote computer
-HOST = '127.0.0.1'    # The remote host
+# connect to remote computer via sockets
+HOST = '127.0.0.1'    # The remote host (this value will be loaded dynamicly from a config file)
 PORT = 50007          # The same port as used by the server
 s = None
 while 1:
