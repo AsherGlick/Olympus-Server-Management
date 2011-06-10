@@ -189,6 +189,13 @@ table {
 			background:#fff;
 			border-radius:4px;
 		}
+		#top_nav a:active{
+			color:#000;
+			background:#ddd;
+			border-radius:4px;
+			border:2px #000 solid;
+			padding:6px 6px 6px 6px;
+		}
 		/*==========================*/
 		
 		/*=== FOOTER 			===*/
