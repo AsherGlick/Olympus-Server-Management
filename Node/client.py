@@ -23,8 +23,12 @@ import sys
 import os
 from stat import *
 import time
+from multiprocessing import Process
+import os
 
-# load plugins
+################
+# load plugins #
+################
 fileList = os.listdir('./plugins');
 for f in fileList:
   if f[len(f)-3:len(f)] == ".py": # does the file have a python extention
@@ -32,15 +36,30 @@ for f in fileList:
     pass # pass is a null operation
   else:
     fileList.remove(f) # purge all non-python files
+
+
+def run_prog(name):
+  execfile(name)
  
+##################################
+# Create threads for each plugin #
+##################################
 
 for f in fileList:
   # Here is where a new process would be created for each plugin
+  program = os.path.join('./plugins',f)
+   # if the loaded program has a bug then the entire program crashes (this needs to be fixed)
+  if __name__ == '__main__':
+    p = Process(target=run_prog, args=(program,))
+    p.start()
+    p.join()
+  # if a thread in python crashes, does the entire program crash?
   print "found", f, "as a plugin"
-  
 print "found", len(fileList), "plugins"
 
-# connect to remote computer via sockets
+##########################################
+# connect to remote computer via sockets #
+##########################################
 HOST = '127.0.0.1'    # The remote host (this value will be loaded dynamicly from a config file)
 PORT = 50007          # The same port as used by the server
 s = None
