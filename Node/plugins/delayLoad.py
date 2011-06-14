@@ -1,4 +1,4 @@
 import time
-print "i am here to slow things down"
+print "DELAY: i am here to slow things down"
 time.sleep(10)
-print "now I am done"
+print "DELAY: now I am done"

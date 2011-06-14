@@ -30,21 +30,22 @@ import os
 # load plugins #
 ################
 fileList = os.listdir('./plugins');
-for f in fileList:
-  if f[len(f)-3:len(f)] == ".py": # does the file have a python extention
-    #print f
-    pass # pass is a null operation
-  else:
-    fileList.remove(f) # purge all non-python files
 
+print "CLIENT: ALLLIST:", fileList
+
+fileList[:] = [f for f in fileList if (f[len(f)-3:len(f)] == ".py")]
+
+print "CLIENT: NEWLIST:", fileList
 
 def run_prog(name):
   execfile(name)
+
+print "Preparing to run programs"
  
 ##################################
 # Create threads for each plugin #
 ##################################
-
+print len(fileList)
 for f in fileList:
   # Here is where a new process would be created for each plugin
   program = os.path.join('./plugins',f)
