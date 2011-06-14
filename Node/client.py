@@ -31,32 +31,26 @@ import os
 ################
 fileList = os.listdir('./plugins');
 
-print "CLIENT: ALLLIST:", fileList
-
 fileList[:] = [f for f in fileList if (f[len(f)-3:len(f)] == ".py")]
-
-print "CLIENT: NEWLIST:", fileList
 
 def run_prog(name):
   execfile(name)
-
-print "Preparing to run programs"
- 
+   
 ##################################
 # Create threads for each plugin #
 ##################################
-print len(fileList)
 for f in fileList:
   # Here is where a new process would be created for each plugin
   program = os.path.join('./plugins',f)
    # if the loaded program has a bug then the entire program crashes (this needs to be fixed)
+  print "REMOTE: found", f, "as a plugin"
   if __name__ == '__main__':
     p = Process(target=run_prog, args=(program,))
     p.start()
-    p.join()
+    #p.join() # Why did i have this line here?
   # if a thread in python crashes, does the entire program crash?
-  print "found", f, "as a plugin"
-print "found", len(fileList), "plugins"
+
+print "REMOTE: found", len(fileList), "plugins"
 
 ##########################################
 # connect to remote computer via sockets #
@@ -80,14 +74,14 @@ while 1:
       continue
     break
   if s is None:
-    print 'Could not connect to root server, Retrying in 10 seconds'
+    print 'REMOTE: Could not connect to root server, Retrying in 30 seconds'
     time.sleep(30)
     continue
   else:
     break
     
 # Now the socket is configured
-print 'Connection to root server'
+print 'REMOTE: Connection to root server complete'
 
 #data transfer goes through here
 s.send('Hello, world')
@@ -95,5 +89,5 @@ data = s.recv(1024)
 
 # Done sending data close the socket
 s.close()
-print 'Received', repr(data)
+print 'REMOTE: Received', repr(data)
 
