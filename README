@@ -1,12 +1,12 @@
 Olympus Server Management System
 
 Web Server
-Root Server
+Source Server
 Remote Server
 
 Plugins create three parts of that a UI
 User Interface <- interface compiled to XML
-Root Server Program <- custom language to receive data
+Source Server Program <- custom language to receive data
 Remote Server Program <- actual program <- or custom language
 
 how will the server programs communicate with each other / what will the plugins be able to do
