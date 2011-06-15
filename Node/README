@@ -5,3 +5,8 @@ operating systems and preventing us form having to write our own language to be 
 on the remote computer. We will also have a headder file for creating plugins that will
 contain functions to easily communicate with the root computer without much knolage of
 how it works.
+
+
+The main thread and each of the plugin threads will share some variables between all of them
+- is connected to root
+- connection to root

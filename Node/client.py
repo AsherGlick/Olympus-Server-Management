@@ -43,14 +43,10 @@ for f in fileList:
   # Here is where a new process would be created for each plugin
   program = os.path.join('./plugins',f)
    # if the loaded program has a bug then the entire program crashes (this needs to be fixed)
-  print "REMOTE: found", f, "as a plugin"
   if __name__ == '__main__':
     p = Process(target=run_prog, args=(program,))
     p.start()
-    #p.join() # Why did i have this line here?
-  # if a thread in python crashes, does the entire program crash?
-
-print "REMOTE: found", len(fileList), "plugins"
+print "REMOTE: running", len(fileList), "plugins", fileList
 
 ##########################################
 # connect to remote computer via sockets #
