@@ -52,7 +52,7 @@ print "REMOTE: running", len(fileList), "plugins", fileList
 # connect to remote computer via sockets #
 ##########################################
 HOST = '127.0.0.1'    # The remote host (this value will be loaded dynamicly from a config file)
-PORT = 50007          # The same port as used by the server
+PORT = 9574           # The same port as used by the server
 s = None
 while 1:
   for res in socket.getaddrinfo(HOST, PORT, socket.AF_UNSPEC, socket.SOCK_STREAM):
