@@ -101,6 +101,40 @@ table {
 			margin-right:10px;
 		}
 		
+		.height_50px{
+			height: 50px;
+		}
+		
+		.plugin_container_base{
+			background: #ddd;
+			border:3px solid #0033DD;
+			border-radius: 3px;
+			box-shadow:0px 1px 2px #0033DD;
+			width:100px;
+			height:100px;
+			float:left;
+			margin-right:10px;
+			margin-top:10px;
+			padding:10px;
+			/*line-height: 100px;*/
+			/*text-align:center;*/
+			overflow: hidden;
+		}
+		.plugin_container_base img{
+			width:200px;
+			height:200px;
+		}
+		.plugin_container_base:hover{
+			border:3px solid #1F497D;
+			box-shadow:0px 1px 2px #444;
+			border-radius: 3px;
+			width:100px;
+			height:100px;
+			float:left;
+			margin-right:10px;
+		}
+		
+
 		
 		h1{
 			color:#0033DD;
@@ -126,6 +160,8 @@ table {
 			margin-top:0px;
 			background:#eee;
 			border-radius: 2px;
+			overflow-y: hidden;
+			min-height: 102px;
 		}
 		
 		#global_plugins ul,#quick_info ul{
@@ -143,6 +179,8 @@ table {
 			margin-top:0px;
 			background:#eee;
 			border-radius: 2px;
+			overflow-y: hidden;
+			min-height: 102px;
 		}
 		
 		#server_list ul,#server_plugins ul{

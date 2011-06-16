@@ -28,8 +28,15 @@
 		   error: function(html){$("#running_plugins").html("<p>Error loading data</p>")}
 		 });	
 		 $('#running_plugins').slideDown();	
+		 $('#running_plugins').effect("highlight", {color: "#1F497D"}, 500);
+		 	
 	}
 	
+	function open_dialog(plugin_num)
+	{
+		$('#plugin_'+plugin_num+'_dialog').dialog('open');
+	}	
+
 	</script>
 
 	
@@ -44,7 +51,7 @@
 		<div class="full" id="top_nav">	
 			<ul>
 				<li><a href="index.html">Dashboard</a></li>
-				<li><a href="configuration.html">Configuration</a></li>	
+				<li><a href="index.html">Configuration</a></li>	
 			</ul>
 		</div>
 		
