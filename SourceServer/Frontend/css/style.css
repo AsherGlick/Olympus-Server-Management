@@ -89,6 +89,7 @@ table {
 		.full{
 			width:960px;
 		}
+		.full_box{ width:912px;}
 		.small_content{
 			width:240px;
 			float:left;
@@ -119,7 +120,7 @@ table {
 			font-style: italic;
 		}
 		/*=== GLOBAL PLUGINS	===*/
-		#global_plugins {
+		#global_plugins,#quick_info{
 			border:6px solid #444;
 			padding:10px 10px 10px 10px;
 			margin-top:0px;
@@ -127,16 +128,16 @@ table {
 			border-radius: 2px;
 		}
 		
-		#global_plugins ul{
+		#global_plugins ul,#quick_info ul{
 			list-style: none;
 		}
-		#global_plugins li{
+		#global_plugins li,#quick_info li{
 			margin-left: 0px;
 		}
 		/*==========================/
 	
 		/*=== SERVER LIST	===*/
-		#server_list {
+		#server_list,#server_plugins {
 			border:6px solid #444;
 			padding:10px 10px 10px 10px;
 			margin-top:0px;
@@ -144,23 +145,35 @@ table {
 			border-radius: 2px;
 		}
 		
-		#server_list ul{
+		#server_list ul,#server_plugins ul{
 			list-style: none;
 		}
-		#server_list li{
+		#server_list li,#server_plugins li{
 			margin-left: 0px;
 		}
 		
-		#server_list a, #server_list a:visited{
+		#server_list a, #server_list a:visited,#server_plugins a,#server_plugins a:visited{
 			color:#0033DD;
 			text-decoration: none;
 			text-shadow: 0px 1px #AAA;
 		}
-		#server_list a:hover {
+		#server_list a:hover,#server_plugins a:hover {
 			color:#444;
 			text-shadow: none;
 		}
 		/*==========================/	
+		
+		/*=== PLUGINS LIST	===*/
+		#running_plugins {
+			border:6px solid #444;
+			padding:10px 10px 10px 10px;
+			margin-top:0px;
+			background:#eee;
+			border-radius: 2px;
+			display:none;
+		}
+		
+		/*==========================/
 		
 		/*=== TOP NAVIGATION	===*/
 		#top_nav{

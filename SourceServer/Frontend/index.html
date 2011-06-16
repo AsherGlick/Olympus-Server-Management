@@ -9,7 +9,29 @@
 	
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	
-	<script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
+	
+	<link type="text/css" href="css/smoothness/jquery-ui-1.8.13.custom.css" rel="Stylesheet" />	
+	<script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.13.custom.min.js"></script>	
+	
+	
+	<script type="text/javascript">	
+	function show_plugins(id_num){
+		var url_1 = "http://localhost/RCOS/actions.php";
+		var data_1 = "retrieve=plugins&id=";
+		
+		 $.ajax({
+		   type: "POST",
+		   url: url_1,
+		   data: data_1+id_num,
+		   success: function(html){$("#running_plugins").html(html);},
+		   error: function(html){$("#running_plugins").html("<p>Error loading data</p>")}
+		 });	
+		 $('#running_plugins').slideDown();	
+	}
+	
+	</script>
+
 	
 
 </head>
@@ -21,36 +43,56 @@
 		
 		<div class="full" id="top_nav">	
 			<ul>
-				<li><a href="#">Dashboard</a></li>
-				<li><a href="#">Configuration</a></li>
-				<li><a href="#">Server Management</a></li>		
+				<li><a href="index.html">Dashboard</a></li>
+				<li><a href="configuration.html">Configuration</a></li>	
 			</ul>
 		</div>
 		
 		<div class="small_content" id="global_plugins">
 			<h3>Installed Global Plugins</h3>
-			<ul>
-				<li>Hardware Monitor <span class="italics">(v.1.2.1)</span></li>
-				<li>IP Monitor <span class="italics">(v.1.2.3)</span></li>
-				<li>Information here will be fed by an ajax call</li>
+			<ul id="global_plugins_data">
+				<img src="cssimg/loading3.gif" alt="loading" />
+				<script type="text/javascript">	
+					$.ajax({
+					   type: "POST",
+					   url: "http://localhost/RCOS/actions.php",
+					   data: "retrieve=day",
+					   success: function(html){$("#global_plugins_data").html(html);},
+					   error: function(html){$("#global_plugins_data").html("<p>Error loading data</p>")}
+					 });	
+				</script>
 			</ul>
 		</div>
 		
 		<div class="large_content" id="server_list">
 			<h3>Remote Server List</h3>
-			<ul>
-				<li>Information here will be fed by an ajax call</li>
-				<li><a href="show_info.php?server=1">Server</a> - <span class="italics">128.67.224.101</span></li>
-				<li><a href="#">Server</a> - <span class="italics">128.67.224.101</span></li>
-				<li><a href="#">Server</a> - <span class="italics">128.67.224.101</span></li>
-				<li><a href="#">Server</a> - <span class="italics">128.67.224.101</span></li>
-				<li><a href="#">Server</a> - <span class="italics">128.67.224.101</span></li>
+			<ul id="server_list_data">
+				<img src="cssimg/loading3.gif" alt="loading" />
+				<script type="text/javascript">
+					$.ajax({
+					   type: "POST",
+					   url: "http://localhost/RCOS/actions.php",
+					   data: "retrieve=serverlist",
+					   success: function(html){$("#server_list_data").html(html);},
+					   error: function(html){$("#server_list_data").html("<p>Error loading data</p>")}
+					 });		
+				</script>
 			</ul>			
 		</div>
 		
 		<div class="clear">&nbsp;</div>
 		
-		<div class="full" id="footer">
+		<div class="full_box" id="running_plugins">	
+			<h3>Plugins Running on server ####</h3>
+			<img src="cssimg/loading3.gif" alt="loading" />
+			
+
+			
+		</div>		
+		
+		<div class="clear">&nbsp;</div>	
+		
+		<div id="footer">
 			<ul>
 				<li><a href="#">About</a></li>
 				<li><a href="#">License</a></li>
