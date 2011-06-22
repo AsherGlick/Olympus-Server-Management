@@ -33,8 +33,11 @@ fileList = os.listdir('./plugins');
 
 fileList[:] = [f for f in fileList if (f[len(f)-3:len(f)] == ".py")]
 
-def run_prog(name):
-  execfile(name)
+def run_prog(__prog_path,__prog_name):
+  #__prog_path and __prog_name are both variables that can be accessed inside of the run program
+  # these are used for clarification when sending data back to the source server, when the validation
+  # script is written these variables will be unable to be used
+  execfile(__prog_path)
    
 ##################################
 # Create threads for each plugin #
