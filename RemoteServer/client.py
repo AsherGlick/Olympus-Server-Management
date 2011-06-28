@@ -23,7 +23,7 @@ import sys
 import os
 from stat import *
 import time
-from multiprocessing import Process
+from multiprocessing import Process, Queue
 import os
 
 ################
@@ -33,27 +33,31 @@ fileList = os.listdir('./plugins');
 
 fileList[:] = [f for f in fileList if (f[len(f)-3:len(f)] == ".py")]
 
-def run_prog(__prog_path):
-  __prog_name = __prog_path[__prog_path.find("plugins/")+8:__prog_path.find(".py")]
-  #__prog_path and __prog_name are both variables that can be accessed inside of the run program
-  # these are used for clarification when sending data back to the source server, when the validation
-  # script is written these variables will be unable to be used
+def run_prog(__prog_path,__prog_name,__out_queue):
+  __prog_name = __prog_name[0:__prog_name.find(".py")]
+  #__prog_path and __prog_name are both variables that can be accessed inside of
+  # the run program and these are used for clarification when sending data back
+  # to the source server, when the validation
+  # scripts written these variables will be 'un valid' to be plugins
   def sendOut (data):
     output = __prog_name + ":"
     for i in data:
       output += i + ","
-    print output
+    #print output
+    __out_queue.put(output)
   execfile(__prog_path)
    
 ##################################
 # Create threads for each plugin #
 ##################################
-for f in fileList:
+# create a queue for process communication
+outqueue = Queue()
+for filename in fileList:
   # Here is where a new process would be created for each plugin
-  program = os.path.join('./plugins',f)
+  program = os.path.join('./plugins',filename)
    # if the loaded program has a bug then the entire program crashes (this needs to be fixed)
   if __name__ == '__main__':
-    p = Process(target=run_prog, args=(program,))
+    p = Process(target=run_prog, args=(program,filename,outqueue))
     p.start()
 print "REMOTE: running", len(fileList), "plugins", fileList
 
@@ -79,8 +83,8 @@ while 1:
       continue
     break
   if s is None:
-    print 'REMOTE: Could not connect to root server, Retrying in 30 seconds'
-    time.sleep(30)
+    print 'REMOTE: Could not connect to root server, Retrying in 1 seconds'
+    time.sleep(1)
     continue
   else:
     break
@@ -88,11 +92,9 @@ while 1:
 # Now the socket is configured
 print 'REMOTE: Connection to root server complete'
 
-#data transfer goes through here
-s.send('Hello, world')
-data = s.recv(1024)
-
-# Done sending data close the socket
-s.close()
-print 'REMOTE: Received', repr(data)
+while True:
+  read = outqueue.get()
+  print read
+  #data transfer goes through here
+  s.send(read)
 
