@@ -111,9 +111,9 @@ void *get_in_addr(struct sockaddr *sa)
     return &(((struct sockaddr_in6*)sa)->sin6_addr);
 }
 
-/*
+/******************************* Wait For Input *******************************\
 | This function waits for each open connection's user input
-\************************************************************/
+\******************************************************************************/
 void * waitForInput(void * threadData) {
   char buf[MAXDATASIZE];
   socketNode* sockInfo=(socketNode *)threadData;

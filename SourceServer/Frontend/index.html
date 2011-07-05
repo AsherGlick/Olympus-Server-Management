@@ -18,13 +18,13 @@
 	<script type="text/javascript">	
 	//show plugins(remote_server_id_number)
 	function show_plugins(id_num){
-		var url_1 = "http://localhost/RCOS/actions.php";
+		var url_1 = "http://localhost/";
 		var data_1 = "retrieve=plugins&id=";
 		
 		 $.ajax({
-		   type: "POST",
-		   url: url_1,
-		   data: data_1+id_num,
+		   type: "GET",
+		   url: "http://127.0.0.1:7331/",
+		   data: "TEST!",
 		   success: function(html){$("#running_plugins").html(html);},
 		   error: function(html){$("#running_plugins").html("<p>Error loading data</p>")}
 		 });	
@@ -67,7 +67,7 @@
 				<img src="cssimg/loading3.gif" alt="loading" />
 				<script type="text/javascript">	
 					$.ajax({
-					   type: "POST",
+					   type: "GET",
 					   url: "http://localhost/RCOS/actions.php",
 					   data: "retrieve=day",
 					   success: function(html){$("#global_plugins_data").html(html);},
@@ -83,8 +83,8 @@
 				<img src="cssimg/loading3.gif" alt="loading" />
 				<script type="text/javascript">
 					$.ajax({
-					   type: "POST",
-					   url: "http://localhost/RCOS/actions.php",
+					   type: "GET",
+					   url: "http://localhost:7331/",
 					   data: "retrieve=serverlist",
 					   success: function(html){$("#server_list_data").html(html);},
 					   error: function(html){$("#server_list_data").html("<p>Error loading data</p>")}
