@@ -1,6 +1,7 @@
 #ifndef _ASHAJAX_PP_H_
 #define _ASHAJAX_PP_H_
 #include <string>
+#include "ashsockPP.h"
 std::string getGET(std::string input) {
   int start;
   int length;
