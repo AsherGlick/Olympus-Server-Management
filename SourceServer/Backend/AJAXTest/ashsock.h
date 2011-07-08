@@ -2,6 +2,8 @@
 | This program was written by asher glick and is not open for anyone to use
 | without express premission by the author aglick@tetrakai.com
 */
+#ifndef _ASHSOCK_H_
+#define _ASHSOCK_H_
 #include <stdio.h> // input out put
 #include <stdlib.h>
 #include <unistd.h>
@@ -15,6 +17,8 @@
 #include <sys/wait.h>
 #include <signal.h>
 #include <fcntl.h> // non blocking socket
+#include "cstrstr.h"
+
 
 
 //#ifndef MAXDATASIZE
@@ -42,15 +46,21 @@ void *get_in_addr(struct sockaddr *sa)
 }
 
 /********************************** Wait Data *********************************\
-| wait for data from a client socket file descriptor                           |
+| wait for data from a client socket file descriptor. The function return the
+| size of the data return in an allocated character array that must be freed
 \******************************************************************************/
-void waitData (char data[MAXDATASIZE], int & clientSockFD){
+int waitData (char * & data, int & clientSockFD){
   char buf[MAXDATASIZE];
+  char * tempData;
   int numbytes; // number of bytes received
+  int totalSize = 0;
+  data = (char *)malloc (sizeof(char)*0);
+  int i = 0;
   while (1) {
     if ((numbytes = recv(clientSockFD, buf, MAXDATASIZE-1, 0)) == -1) {
       // no data waiting
-      continue;
+      //continue;
+      break;
     }
     if (numbytes == 0){
       //if a null byte is transfered the socket is closed
@@ -60,10 +70,29 @@ void waitData (char data[MAXDATASIZE], int & clientSockFD){
       break;
     }
     // ALL HAS GONE WELL, what to do with the information here
-    data = buf;
-    data[numbytes] = '\0';
-    printf(":%s:",data);
+
+    totalSize += numbytes;
+    //printf("Total Size:%i\n",totalSize);
+    //printf("test makr 1\n");
+    tempData = (char *) malloc (sizeof(char) * (totalSize+1));
+    //printf("test mark 2\n");
+    
+    for (i = 0; i < totalSize-numbytes;i++) {
+      tempData[i] = data[i];
+    }
+    for (;i < totalSize; i++) {
+      tempData[i] = buf[i-(totalSize-numbytes)];
+    }
+    tempData[totalSize] = '\0';
+    //printf("test mark 3\n");
+    free (data);
+    //printf("test clear (mark 3.5)\n");
+    data = tempData;
+    //printf("test mark 4\n");
   }
+  printf("%s\n",data);
+  printf("DONE\n");
+  return totalSize;
 }
 
 
@@ -150,3 +179,4 @@ void bindPort (int & sockfd, char * port) {
       exit(1);
   }
 }
+#endif
