@@ -140,6 +140,36 @@ void waitClient(int & clientSockFD, int & sockFD){
 }
 
 
+/********************************* Wait Client ********************************\
+| Wait client waits for a client to connect to the server and returns a sockFD |
+| that connects to the client. This file descripter can be used in waitData    |
+\******************************************************************************/
+int waitSelf(int & clientSockFD, int & sockFD){
+  socklen_t sin_size;
+  struct sockaddr_storage their_addr;
+  char s[INET6_ADDRSTRLEN];
+  
+  while(1) {
+    sin_size = sizeof their_addr;
+    clientSockFD = accept(sockFD, (struct sockaddr *)&their_addr, &sin_size);
+    if (clientSockFD == -1) {
+      perror("accept");
+      continue;
+    }
+    inet_ntop(their_addr.ss_family,get_in_addr((struct sockaddr *)&their_addr),s, sizeof s);
+    printf("server: got connection from %s\n", s);
+    if (std::string(s) != "127.0.0.1") {
+      close(clientSockFD);
+      return -1;
+    }
+    
+    fcntl(clientSockFD,F_SETFL,O_NONBLOCK);
+    
+    return 0;
+  }
+}
+
+
 
 
 /********************************** Bind port *********************************\

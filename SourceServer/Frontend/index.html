@@ -58,6 +58,7 @@
 				<li><a href="index.html">Dashboard</a></li>
 				<li><a href="index.html">Configuration</a></li>
 				<li><a href="OlympusPresentation.swf">Slideshow</a></li>	
+				<li><button onclick="show_plugins(2)">CLICK</button></li>
 			</ul>
 		</div>
 		
@@ -68,7 +69,7 @@
 				<script type="text/javascript">	
 					$.ajax({
 					   type: "GET",
-					   url: "http://localhost/RCOS/actions.php",
+					   url: "http://localhost:7331/RCOS/actions.php",
 					   data: "retrieve=day",
 					   success: function(html){$("#global_plugins_data").html(html);},
 					   error: function(html){$("#global_plugins_data").html("<p>Error loading data</p>")}
@@ -83,8 +84,8 @@
 				<img src="cssimg/loading3.gif" alt="loading" />
 				<script type="text/javascript">
 					$.ajax({
-					   type: "GET",
-					   url: "http://localhost:7331/",
+					   type: "POST",
+					   url: "http://localhost:7331/request.php",
 					   data: "retrieve=serverlist",
 					   success: function(html){$("#server_list_data").html(html);},
 					   error: function(html){$("#server_list_data").html("<p>Error loading data</p>")}
