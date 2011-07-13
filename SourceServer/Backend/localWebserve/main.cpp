@@ -24,7 +24,7 @@ int main () {
       while (data == "") {
         data = waitData (clientSockFD);
       }
-      cout << getGET(data) << endl;
+      cout << data << endl;
       ifstream f;
       f.open(string("../../Frontend"+getGET(data)).c_str());
       string file = "";
@@ -41,11 +41,11 @@ int main () {
           total++;
         }
 	      while (!sendData (clientSockFD, file)){
-          perror("send");
-	        cout << "send ERROR!" << getGET (data)<< "! " << total << "bytes" << endl; 
+          //perror("send");
+	        //cout << "send ERROR!" << getGET (data)<< "! " << total << "bytes" << endl; 
 	      }
 	      {
-	        cout << getGET (data) << " SENT " << total << "bytes" << endl;
+	        //cout << getGET (data) << " SENT " << total << "bytes" << endl;
 	      }
 	    }
 	    close(clientSockFD);

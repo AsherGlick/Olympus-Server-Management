@@ -86,7 +86,7 @@
 					$.ajax({
 					   type: "POST",
 					   url: "http://localhost/actions.php",
-					   data: "retrieve=serverlist",
+					   data: "s",
 					   success: function(html){$("#server_list_data").html(html);},
 					   error: function(html){$("#server_list_data").html("<p>Error loading data</p>")}
 					 });		
