@@ -28,17 +28,24 @@ int main () {
       ifstream f;
       f.open(string("../../Frontend"+getGET(data)).c_str());
       string file = "";
+      int total = 0;
       while (f.good()) {
         file = "";
+        
         for (int i = 0; i < 4024; i++) {
           if (!f.good()) {
+            file = file.substr(0,file.size()-1);
             break;
           }
           file += f.get();
+          total++;
         }
-	      if (!sendData (clientSockFD, file)){
-	        //fprintf(perror,"WTF");
-	        cout << "send ERROR!" << getGET (data)<< "!!! OMG WTF BBQHAXORS!!11!!!1" << endl; 
+	      while (!sendData (clientSockFD, file)){
+          perror("send");
+	        cout << "send ERROR!" << getGET (data)<< "! " << total << "bytes" << endl; 
+	      }
+	      {
+	        cout << getGET (data) << " SENT " << total << "bytes" << endl;
 	      }
 	    }
 	    close(clientSockFD);

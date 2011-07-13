@@ -68,8 +68,8 @@
 				<img src="cssimg/loading3.gif" alt="loading" />
 				<script type="text/javascript">	
 					$.ajax({
-					   type: "GET",
-					   url: "http://localhost:7331/RCOS/actions.php",
+					   type: "POST",
+					   url: "http://localhost:7331/actions.php",
 					   data: "retrieve=day",
 					   success: function(html){$("#global_plugins_data").html(html);},
 					   error: function(html){$("#global_plugins_data").html("<p>Error loading data</p>")}
@@ -85,7 +85,7 @@
 				<script type="text/javascript">
 					$.ajax({
 					   type: "POST",
-					   url: "http://localhost:7331/request.php",
+					   url: "http://localhost/actions.php",
 					   data: "retrieve=serverlist",
 					   success: function(html){$("#server_list_data").html(html);},
 					   error: function(html){$("#server_list_data").html("<p>Error loading data</p>")}
