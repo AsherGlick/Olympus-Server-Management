@@ -3,6 +3,9 @@
 #include <string>
 #include "ashsockPP.h"
 
+#define HTML_GET "GET"
+#define HTML_POST "POST"
+
 class html {
   public:
     std::string type; // GET POST PUT
@@ -16,7 +19,9 @@ class html {
     void setPOST();
     void setHost();
 };
-
+/******************************************************************************\
+| The main constructor for the variables
+\******************************************************************************/
 html::html(std::string input) {
   raw = input;
   post = "NULL";
@@ -53,7 +58,9 @@ html::html(std::string input) {
   }
 }
 
-
+/******************************************************************************\
+| Internal function to set the POST data (if any) based off of the raw data    |
+\******************************************************************************/
 void html::setPOST () {
   int postStart = 0;
   int postStop = raw.size();
@@ -71,7 +78,9 @@ void html::setPOST () {
   }
   post = raw.substr(postStart,postStop-postStart);
 }
-
+/******************************************************************************\
+| Internal function to set the host value based off of the raw data            |
+\******************************************************************************/
 void html::setHost() {
   int start = -1;
   for (unsigned int i = 0; i < raw.size()-4; i++) {
