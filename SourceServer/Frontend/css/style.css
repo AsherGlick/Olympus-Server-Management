@@ -142,12 +142,12 @@ table {
 		.graphs_container li{
 			display: block;
 			float: left;
+			margin-top:6px;
 		}
 		.graph{
 			height:100px;
 			width:100px;
 			overflow: hidden;
-			border:1px solid blue;
 		}
 		.graph_hidden{
 			width:100px;
@@ -156,6 +156,14 @@ table {
 			overflow: hidden;
 		}
 
+		.load_button{
+			background:#DDD;
+			border:2px solid #1F497D;
+			border-radius: 3px;
+		}
+		.load_button:active{
+			background:#fff;
+		}
 		
 
 		
