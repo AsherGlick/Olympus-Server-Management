@@ -138,7 +138,17 @@ table {
 			background:#eee;
 			border:2px #444 solid;
 			min-height:100px;
+			max-height: 200px;
+			overflow-y:scroll;
+			overflow-x: hidden;
+			padding-bottom:30px;
 		}
+		
+		.graphs_container svg{
+			height:200px;
+			width:400px;
+		}
+				
 		.graphs_container li{
 			display: block;
 			float: left;
@@ -155,6 +165,7 @@ table {
 			display: none;
 			overflow: hidden;
 		}
+
 
 		.load_button{
 			background:#DDD;

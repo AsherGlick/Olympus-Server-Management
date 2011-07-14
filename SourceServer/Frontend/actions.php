@@ -41,9 +41,40 @@
 	<div class="clear"></div>
 	<!--END PLUGINS GRID-->
 	
-	<!--PLUGINS-->
+  <!--BEGIN PLUGINS-->
+	<!--BEGIN Plugin 1-->
 	<div id="plugin_1_dialog" class="dlg" title="Plugin 1: HD Monitor">
 		<script type=text/javascript>
+		//=== plugin 1 dialog properties   ===//
+		$('#plugin_1_dialog').dialog({ 
+			autoOpen: false, 
+			show: "scale",
+			width:300,
+			height:300,
+			maxWidth: 500,
+			maxHeight: 500,
+			scroll: true,
+			position: [0,0],
+		});
+		//=== end plugin 1 dialog properties ===//
+		
+		//=== Plugin 1 LOADER		===//
+		function plugin_1_loader()	
+		{
+			//hide load button
+			$('#plugin_1_load_button').hide();
+			
+			//generate charts here
+			generate_charts_plugin_1();
+			$('.graph').removeClass('graph_hidden').addClass('graph');
+			$('#plugin_1_dialog_graphs_container').removeClass('graph_hidden');
+			$('#plugin_1_dialog_data_container').removeClass('graph_hidden');
+			//load other stuff here
+			// here
+		}
+		//=== END Plugin 1 LOADER	===//
+		
+		//=== Plugin 1 Functions	===//
 		function generate_charts_plugin_1()
 		{
 			//plugin 1 graph stuff
@@ -70,18 +101,9 @@
 			graph3.g.piechart(50, 50, 40,[25,25,50]);
 			graph4.g.piechart(50, 50, 40,[10,40,50]);	
 		}
-		function plugin_1_loader()
-		{
-			//generate charts
-			generate_charts_plugin_1();
-			$('.graph').removeClass('graph_hidden').addClass('graph');
-			$('#plugin_1_dialog_graphs_container').removeClass('graph_hidden');
-			$('#plugin_1_dialog_data_container').removeClass('graph_hidden');
-			//load other stuff
-			// here
-		}
+		//=== END Plugins 1 Functions		===//
 		</script>
-		<button class="load_button" onclick="plugin_1_loader()">Load Plugin Data &rarr;</button>
+		<button id="plugin_1_load_button" class="load_button" onclick="plugin_1_loader()">Load Plugin Data &rarr;</button>
 		<p><br /></p>
 		<div id="plugin_1_dialog_graphs_container" class="graphs_container graph_hidden">		
 			<ul>
@@ -102,81 +124,12 @@
 			<div class="clear"></div>			
 		</div>
 	</div>	
-	<script type="text/javascript">
-		//plugin dialog properties
-		$('#plugin_1_dialog').dialog({ 
-			autoOpen: false, 
-			show: "scale",
-			width:300,
-			height:300,
-			maxWidth: 500,
-			maxHeight: 500,
-			scroll: true,
-			position: [0,0],
-		});
-	</script>
+	<!--END PLUGIN 1-->
 	
+	<!--BEGIN Plugin 2-->
 	<div id="plugin_2_dialog" class="dlg" title="Plugin 2: HD Monitor2">
 		<script type=text/javascript>
-		function generate_charts_plugin_2()
-		{
-			//plugin 1 graph stuff
-			var graph1 = Raphael('plugin_2_dialog_graph_1');
-			var graph2 = Raphael('plugin_2_dialog_graph_2');
-			var graph3 = Raphael('plugin_2_dialog_graph_3');
-			var graph4 = Raphael('plugin_2_dialog_graph_4');	
-			
-			graph1.g.txtattr.font = "12px 'Fontin Sans', Fontin-Sans, sans-serif";
-			graph1.g.text(20, 8, "HD 1").attr({"font-size": 11});		
-			
-			graph2.g.txtattr.font = "12px 'Fontin Sans', Fontin-Sans, sans-serif";
-			graph2.g.text(20, 8, "HD 2").attr({"font-size": 11});	
-			
-			graph3.g.txtattr.font = "12px 'Fontin Sans', Fontin-Sans, sans-serif";
-			graph3.g.text(20, 8, "HD 3").attr({"font-size": 11});	
-			
-			graph4.g.txtattr.font = "12px 'Fontin Sans', Fontin-Sans, sans-serif";
-			graph4.g.text(20, 8, "HD 4").attr({"font-size": 11});										
-			// Creates pie chart at with center at x, y,
-			// radius r and data: [55, 20, 13, 32, 5, 1, 2]
-			graph1.g.piechart(50, 50, 40,[25,25,50]);
-			graph2.g.piechart(50, 50, 40,[10,40,50]);		
-			graph3.g.piechart(50, 50, 40,[25,25,50]);
-			graph4.g.piechart(50, 50, 40,[10,40,50]);	
-		}
-		function plugin_2_loader()
-		{
-			//generate charts
-			generate_charts_plugin_2();
-			$('.graph').removeClass('graph_hidden').addClass('graph');
-			$('#plugin_2_dialog_graphs_container').removeClass('graph_hidden');
-			$('#plugin_2_dialog_data_container').removeClass('graph_hidden');
-			//load other stuff
-			// here
-		}
-		</script>
-		<button class="load_button" onclick="plugin_2_loader()">Load Plugin Data &rarr;</button>
-		<p><br /></p>
-		<div id="plugin_2_dialog_graphs_container" class="graphs_container graph_hidden">		
-			<ul>
-				<li id="plugin_2_dialog_graph_1" class="graph_hidden"></li>
-				<li id="plugin_2_dialog_graph_2" class="graph_hidden"></li>
-				<li id="plugin_2_dialog_graph_3" class="graph_hidden"></li>
-				<li id="plugin_2_dialog_graph_4" class="graph_hidden"></li>
-			</ul>
-			<div class="clear"></div>
-		</div>
-		<p><br/></p>
-		<div id="plugin_2_dialog_data_container" class="data_container graph_hidden">
-			<h3>Hard Drive Information 2</h3>	
-			<ul>
-				<li>HD1 Space Free: 50mb</li>
-				<li>HD2 Space Free: 50mb</li>
-			</ul>
-			<div class="clear"></div>			
-		</div>
-	</div>	
-	<script type="text/javascript">
+		//=== plugin 2 dialog properties   ===//
 		$('#plugin_2_dialog').dialog({ 
 			autoOpen: false, 
 			show: "scale",
@@ -186,8 +139,92 @@
 			maxHeight: 500,
 			scroll: true,
 			position: [300,0],
-			});
-	</script>
+		});
+		//=== end plugin 2 dialog properties ===//
+		
+		//=== Plugin 2 LOADER		===//
+		function plugin_2_loader()	
+		{
+			//hide load button
+			$('#plugin_2_load_button').hide();
+			
+			//generate charts here
+			generate_charts_plugin_2();
+
+			//load other stuff here
+			// here
+		}
+		//=== END Plugin 2 LOADER	===//
+		
+		//=== Plugin 2 Functions	===//
+		function generate_charts_plugin_2()
+		{
+				//graph1
+ 				var graph1 = Raphael("plugin_2_dialog_graph_1");
+                graph1.g.txtattr.font = "12px 'Fontin Sans', Fontin-Sans, sans-serif";
+                graph1.g.text(110, 15, "HD 1 Drive Space").attr({"font-size": 16});
+                
+                var graph1_pie = graph1.g.piechart(110, 100, 70, [60, 40], {legend: ["%%.%% – Free Space", "Used Space"], legendpos: "east",stroke: '#1F497D'});
+                graph1_pie.hover(function () {
+                    this.sector.stop();
+                    this.sector.scale(1.1, 1.1, this.cx, this.cy);
+                    if (this.label) {
+                        this.label[0].stop();
+                        this.label[0].scale(1.5);
+                        this.label[1].attr({"font-weight": 800});
+                    }
+                }, function () {
+                    this.sector.animate({scale: [1, 1, this.cx, this.cy]}, 500, "bounce");
+                    if (this.label) {
+                        this.label[0].animate({scale: 1}, 500, "bounce");
+                        this.label[1].attr({"font-weight": 400});
+                    }
+                });
+                
+                //graph2
+ 				var graph2 = Raphael("plugin_2_dialog_graph_2");
+                graph2.g.txtattr.font = "12px 'Fontin Sans', Fontin-Sans, sans-serif";
+                graph2.g.text(110, 10, "HD 2 Drive Space").attr({"font-size": 16});
+                
+                var graph2_pie = graph2.g.piechart(110, 100, 70, [60, 40], {legend: ["%%.%% – Free Space2", "Used Space2"], legendpos: "east",stroke: '#1F497D'});
+                graph2_pie.hover(function () {
+                    this.sector.stop();
+                    this.sector.scale(1.1, 1.1, this.cx, this.cy);
+                    if (this.label) {
+                        this.label[0].stop();
+                        this.label[0].scale(1.5);
+                        this.label[1].attr({"font-weight": 800});
+                    }
+                }, function () {
+                    this.sector.animate({scale: [1, 1, this.cx, this.cy]}, 500, "bounce");
+                    if (this.label) {
+                        this.label[0].animate({scale: 1}, 500, "bounce");
+                        this.label[1].attr({"font-weight": 400});
+                    }
+                });
+                
+                	
+		}
+		//=== END Plugins 2 Functions		===//
+		</script>
+		<button id="plugin_2_load_button" class="load_button" onclick="plugin_2_loader()">Load Plugin Data &rarr;</button>
+		<p><br /></p>
+		<div id="plugin_2_dialog_graphs_container" class="graphs_container">		
+			<div id="plugin_2_dialog_graph_1"></div>
+			<div id="plugin_2_dialog_graph_2"></div>
+			<div class="clear"></div>
+		</div>
+		<p><br/></p>
+		<div id="plugin_2_dialog_data_container" class="data_container">
+			<h3>Hard Drive Information2</h3>	
+			<ul>
+				<li>HD1 Space Free: 50mb</li>
+				<li>HD2 Space Free: 50mb</li>
+			</ul>
+			<div class="clear"></div>			
+		</div>
+	</div>	
+	<!--END PLUGIN 2-->
 	
 	<div id="plugin_3_dialog" class="dlg" title="Plugin 3">
 		plugin 1 dialog
@@ -286,7 +323,7 @@ Quisque elit augue, posuere vel adipiscing in, suscipit vitae erat. Vivamus sit 
 	</script>				
 	<!--END PLUGINS-->
 	<script type="text/javascript">
-		//make plugin dialogs snap-to-grid draggable
+		//make all plugin dialogs snap-to-grid draggable
 		$('.dlg').dialog().parents('.ui-dialog').draggable('option', 'snap',true);	
 		$('.dlg').dialog().parents('.ui-dialog').draggable('option', 'grid',[30,30]);			
 
