@@ -1,4 +1,4 @@
-<?php if($_POST['retrieve'] == "serverlist"): ?>
+<?php if($_POST['s']): ?>
 				<li><a href="#" id="server_1234" onclick="show_plugins(1234)">Server</a> - <span class="italics">128.67.224.101</span></li>
 				<li><a href="#" id="server_1000" onclick="show_plugins(1000)">Server</a> - <span class="italics">128.67.224.101</span></li>
 				<li><a href="#" id="server_1200" onclick="show_plugins(1200)">Server</a> - <span class="italics">128.67.224.101</span></li>
@@ -226,10 +226,10 @@
 	</div>	
 	<!--END PLUGIN 2-->
 	
-	<div id="plugin_3_dialog" class="dlg" title="Plugin 3">
-		plugin 1 dialog
-	</div>	
-	<script type="text/javascript">
+	<!--BEGIN Plugin 3-->
+	<div id="plugin_4_dialog" class="dlg" title="Plugin 4: TITLE HERE">
+		<script type=text/javascript>
+		//=== plugin 3 dialog properties   ===//
 		$('#plugin_3_dialog').dialog({ 
 			autoOpen: false, 
 			show: "scale",
@@ -238,90 +238,50 @@
 			maxWidth: 500,
 			maxHeight: 500,
 			scroll: true,
-			position: [600,0],			
-			});
-	</script>
+			position: [600,0],
+		});
+		//=== end plugin 3 dialog properties ===//
+		
+		//=== Plugin 3 LOADER		===//
+		function plugin_3_loader()	
+		{
+			//hide load button
+			$('#plugin_3_load_button').hide();
+			
+			//generate charts here
+			generate_charts_plugin_3();
 
-	<div id="plugin_4_dialog" class="dlg" title="Plugin 4">
-Quisque elit augue, posuere vel adipiscing in, suscipit vitae erat. Vivamus sit amet dolor turpis, non aliquet felis. Nam turpis orci, ultricies nec posuere placerat, accumsan consectetur tortor. Pellentesque tristique bibendum odio et suscipit. Donec placerat lacus at nisi tincidunt eu tempus metus hendrerit. Nullam imperdiet, nisi vel ornare faucibus, lorem diam tempor orci, molestie egestas mauris diam quis ipsum. Curabitur auctor adipiscing nunc ornare egestas. Nulla facilisi. Maecenas felis sem, pharetra in euismod in, fringilla vitae justo. Maecenas facilisis tincidunt vulputate. Maecenas semper augue eget ipsum ornare ac suscipit arcu vestibulum. Vivamus facilisis, enim non feugiat interdum, justo dolor pellentesque tellus, et eleifend mi ante vel lectus. Fusce nec nisi in tortor adipiscing accumsan ut vel ipsum. Mauris et erat erat, eu pellentesque erat. Aliquam urna risus, rutrum id facilisis et, volutpat quis felis. Vivamus molestie pharetra sollicitudin. Praesent id neque dui. Cras eu dolor massa. 
-	</div>	
-	<script type="text/javascript">
-		$('#plugin_4_dialog').dialog({ 
-			autoOpen: false, 
-			show: "scale",
-			width:300,
-			height:300,
-			maxWidth: 500,
-			maxHeight: 500,
-			scroll: true,
-			position: [0,300],
-			});
-	</script>	
+			//load other stuff here
+			// here
+		}
+		//=== END Plugin 3 LOADER	===//
+		
+		//=== Plugin 3 Functions	===//
+		function generate_charts_plugin_3()
+		{     
+	        //graphs
+			                	
+		}
+		//=== END Plugins 3 Functions		===//
+		</script>
+		<button id="plugin_3_load_button" class="load_button" onclick="plugin_3_loader()">Load Plugin Data &rarr;</button>
+		<p><br /></p>
+		<div id="plugin_3_dialog_graphs_container" class="graphs_container">		
+			<div id="plugin_3_dialog_graph_1"></div>
+			<div class="clear"></div>
+		</div>
+		<p><br/></p>
+		<div id="plugin_3_dialog_data_container" class="data_container">
+			<h3>Plugin Title</h3>	
 
-	<div id="plugin_5_dialog" class="dlg" title="Plugin 5">
-Quisque elit augue, posuere vel adipiscing in, suscipit vitae erat. Vivamus sit amet dolor turpis, non aliquet felis. Nam turpis orci, ultricies nec posuere placerat, accumsan consectetur tortor. Pellentesque tristique bibendum odio et suscipit. Donec placerat lacus at nisi tincidunt eu tempus metus hendrerit. Nullam imperdiet, nisi vel ornare faucibus, lorem diam tempor orci, molestie egestas mauris diam quis ipsum. Curabitur auctor adipiscing nunc ornare egestas. Nulla facilisi. Maecenas felis sem, pharetra in euismod in, fringilla vitae justo. Maecenas facilisis tincidunt vulputate. Maecenas semper augue eget ipsum ornare ac suscipit arcu vestibulum. Vivamus facilisis, enim non feugiat interdum, justo dolor pellentesque tellus, et eleifend mi ante vel lectus. Fusce nec nisi in tortor adipiscing accumsan ut vel ipsum. Mauris et erat erat, eu pellentesque erat. Aliquam urna risus, rutrum id facilisis et, volutpat quis felis. Vivamus molestie pharetra sollicitudin. Praesent id neque dui. Cras eu dolor massa. 
+			<div class="clear"></div>			
+		</div>
 	</div>	
-	<script type="text/javascript">
-		$('#plugin_5_dialog').dialog({ 
-			autoOpen: false, 
-			show: "scale",
-			width:300,
-			height:300,
-			maxWidth: 500,
-			maxHeight: 500,
-			scroll: true,
-			position: [300,300],
-			});
-	</script>	
+	<!--END PLUGIN 3-->
+
+  <!--END PLUGINS-->
 	
-	<div id="plugin_6_dialog" class="dlg" title="Plugin 6">
-Quisque elit augue, posuere vel adipiscing in, suscipit vitae erat. Vivamus sit amet dolor turpis, non aliquet felis. Nam turpis orci, ultricies nec posuere placerat, accumsan consectetur tortor. Pellentesque tristique bibendum odio et suscipit. Donec placerat lacus at nisi tincidunt eu tempus metus hendrerit. Nullam imperdiet, nisi vel ornare faucibus, lorem diam tempor orci, molestie egestas mauris diam quis ipsum. Curabitur auctor adipiscing nunc ornare egestas. Nulla facilisi. Maecenas felis sem, pharetra in euismod in, fringilla vitae justo. Maecenas facilisis tincidunt vulputate. Maecenas semper augue eget ipsum ornare ac suscipit arcu vestibulum. Vivamus facilisis, enim non feugiat interdum, justo dolor pellentesque tellus, et eleifend mi ante vel lectus. Fusce nec nisi in tortor adipiscing accumsan ut vel ipsum. Mauris et erat erat, eu pellentesque erat. Aliquam urna risus, rutrum id facilisis et, volutpat quis felis. Vivamus molestie pharetra sollicitudin. Praesent id neque dui. Cras eu dolor massa. 
-	</div>	
-	<script type="text/javascript">
-		$('#plugin_6_dialog').dialog({ 
-			autoOpen: false, 
-			show: "scale",
-			width:300,
-			height:300,
-			maxWidth: 500,
-			maxHeight: 500,
-			scroll: true,
-			position: [600,300],
-			});
-	</script>
 	
-	<div id="plugin_7_dialog" class="dlg" title="Plugin 7">
-Quisque elit augue, posuere vel adipiscing in, suscipit vitae erat. Vivamus sit amet dolor turpis, non aliquet felis. Nam turpis orci, ultricies nec posuere placerat, accumsan consectetur tortor. Pellentesque tristique bibendum odio et suscipit. Donec placerat lacus at nisi tincidunt eu tempus metus hendrerit. Nullam imperdiet, nisi vel ornare faucibus, lorem diam tempor orci, molestie egestas mauris diam quis ipsum. Curabitur auctor adipiscing nunc ornare egestas. Nulla facilisi. Maecenas felis sem, pharetra in euismod in, fringilla vitae justo. Maecenas facilisis tincidunt vulputate. Maecenas semper augue eget ipsum ornare ac suscipit arcu vestibulum. Vivamus facilisis, enim non feugiat interdum, justo dolor pellentesque tellus, et eleifend mi ante vel lectus. Fusce nec nisi in tortor adipiscing accumsan ut vel ipsum. Mauris et erat erat, eu pellentesque erat. Aliquam urna risus, rutrum id facilisis et, volutpat quis felis. Vivamus molestie pharetra sollicitudin. Praesent id neque dui. Cras eu dolor massa. 
-	</div>	
-	<script type="text/javascript">
-		$('#plugin_7_dialog').dialog({ 
-			autoOpen: false, 
-			show: "scale",
-			width:300,
-			height:300,
-			maxWidth: 500,
-			maxHeight: 500,
-			scroll: true,
-			position: [0,0],
-			});
-	</script>	
-
-	<div id="plugin_8_dialog" class="dlg" title="Plugin 8">
-Quisque elit augue, posuere vel adipiscing in, suscipit vitae erat. Vivamus sit amet dolor turpis, non aliquet felis. Nam turpis orci, ultricies nec posuere placerat, accumsan consectetur tortor. Pellentesque tristique bibendum odio et suscipit. Donec placerat lacus at nisi tincidunt eu tempus metus hendrerit. Nullam imperdiet, nisi vel ornare faucibus, lorem diam tempor orci, molestie egestas mauris diam quis ipsum. Curabitur auctor adipiscing nunc ornare egestas. Nulla facilisi. Maecenas felis sem, pharetra in euismod in, fringilla vitae justo. Maecenas facilisis tincidunt vulputate. Maecenas semper augue eget ipsum ornare ac suscipit arcu vestibulum. Vivamus facilisis, enim non feugiat interdum, justo dolor pellentesque tellus, et eleifend mi ante vel lectus. Fusce nec nisi in tortor adipiscing accumsan ut vel ipsum. Mauris et erat erat, eu pellentesque erat. Aliquam urna risus, rutrum id facilisis et, volutpat quis felis. Vivamus molestie pharetra sollicitudin. Praesent id neque dui. Cras eu dolor massa. 
-	</div>	
-	<script type="text/javascript">
-		$('#plugin_8_dialog').dialog({ 
-			autoOpen: false, 
-			show: "scale",
-			width:300,
-			height:300,
-			maxWidth: 500,
-			maxHeight: 500,
-			scroll: true,
-			position: [0,0],
-			});
-	</script>				
-	<!--END PLUGINS-->
 	<script type="text/javascript">
 		//make all plugin dialogs snap-to-grid draggable
 		$('.dlg').dialog().parents('.ui-dialog').draggable('option', 'snap',true);	
@@ -356,52 +316,13 @@ Quisque elit augue, posuere vel adipiscing in, suscipit vitae erat. Vivamus sit 
 		    close_dialog(3);
 		});
 
-		//Open and Close Bindings for Plugin 4
-		$(document).bind('keyup', 'Shift+4', function(){
-		    open_dialog(4);
-		});
-		$(document).bind('keyup', 'Ctrl+Shift+4', function(){
-		    close_dialog(4);
-		});
-		
-				//Open and Close Bindings for Plugin 5
-		$(document).bind('keyup', 'Shift+5', function(){
-		    open_dialog(5);
-		});
-		$(document).bind('keyup', 'Ctrl+Shift+5', function(){
-		    close_dialog(5);
-		});
-		
-				//Open and Close Bindings for Plugin 6
-		$(document).bind('keyup', 'Shift+6', function(){
-		    open_dialog(6);
-		});
-		$(document).bind('keyup', 'Ctrl+Shift+6', function(){
-		    close_dialog(6);
-		});
-		
-				//Open and Close Bindings for Plugin 7
-		$(document).bind('keyup', 'Shift+7', function(){
-		    open_dialog(7);
-		});
-		$(document).bind('keyup', 'Ctrl+Shift+7', function(){
-		    close_dialog(7);
-		});
-		
-				//Open and Close Bindings for Plugin 8
-		$(document).bind('keyup', 'Shift+8', function(){
-		    open_dialog(8);
-		});
-		$(document).bind('keyup', 'Ctrl+Shift+8', function(){
-		    close_dialog(8);
-		});
-		
-				
+		//=== END Shortcut Keys		===//		
 	</script>
 	
 	
 	
 	
-<?php elseif($_POST['retrieve'] == "day"): ?>
+<?php elseif($_POST['day']): ?>
 	There are no installed global plugins
 <?php endif; ?>
+

@@ -25,21 +25,22 @@
 	
 		
 	<script type="text/javascript">	
+	//=== SERVER URL			===/
+	serverURL = "http://127.0.0.1/RCOS/actions.php";
+	currentNumPlugins = 0;
+	
 	//show plugins(remote_server_id_number)
 	function show_plugins(id_num){
-		var url_1 = "http://localhost/";
-		var data_1 = "retrieve=plugins&id=";
-		
 		 $.ajax({
 		   type: "GET",
-		   url: "http://127.0.0.1:7331/",
-		   data: "TEST!",
+		   url: serverURL,
+		   data: "d/"+id_num+"/p",
 		   success: function(html){$("#running_plugins").html(html);},
 		   error: function(html){$("#running_plugins").html("<p>Error loading data</p>")}
 		 });	
 		 $('#running_plugins').slideDown();	
 		 $('#running_plugins').effect("highlight", {color: "#1F497D"}, 500);
-		 	
+	 	
 	}
 	
 	function open_dialog(plugin_num)
@@ -52,34 +53,7 @@
 	}	
 
 
-/*
-   function generate_pi_chart() {
-		var chart_element_id = arguments[0];
-		var x = arguments[1];
-		var y = arguments[2];
-		var r = arguments[3];
-		
-		//var arr = new Array(arguments.length);
-		for(var i = 1; i < arguments.length; i++)
-		{
-			//arr[i] = arguments[i];
-			//alert(arguments[i]);
-		}
-	
-		//arr.shift();
 
-        var newChart = Raphael(chart_element_id);
-
-		// Creates pie chart at with center at x, y,
-		// radius r and data: [55, 20, 13, 32, 5, 1, 2]
-		//newChart.g.piechart(x, y, r,[25,25,50]);
-		
-		//var functName = newChart.g.piechart;
-		newChart.g.piechart.apply(null,Array.prototype.slice.call(arguments).slice(1));
-//functName.apply(null,Array.prototype.slice.call(arguments).slice(numElementsToIgnore));
-
-    };
-*/
 	</script>
 
 	
@@ -107,8 +81,8 @@
 				<script type="text/javascript">	
 					$.ajax({
 					   type: "POST",
-					   url: "http://localhost:7331/actions.php",
-					   data: "retrieve=day",
+					   url: serverURL,
+					   data: "d/gp",
 					   success: function(html){$("#global_plugins_data").html(html);},
 					   error: function(html){$("#global_plugins_data").html("<p>Error loading data</p>")}
 					 });	
@@ -123,7 +97,7 @@
 				<script type="text/javascript">
 					$.ajax({
 					   type: "POST",
-					   url: "http://localhost/actions.php",
+					   url: serverURL,
 					   data: "s",
 					   success: function(html){$("#server_list_data").html(html);},
 					   error: function(html){$("#server_list_data").html("<p>Error loading data</p>")}
