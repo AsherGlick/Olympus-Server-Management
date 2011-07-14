@@ -42,8 +42,42 @@
 	<!--END PLUGINS GRID-->
 	
 	<!--PLUGINS-->
-	<div id="plugin_1_dialog" class="dlg" title="Plugin 1">
-Quisque elit augue, posuere vel adipiscing in, suscipit vitae erat. Vivamus sit amet dolor turpis, non aliquet felis. Nam turpis orci, ultricies nec posuere placerat, accumsan consectetur tortor. Pellentesque tristique bibendum odio et suscipit. Donec placerat lacus at nisi tincidunt eu tempus metus hendrerit. Nullam imperdiet, nisi vel ornare faucibus, lorem diam tempor orci, molestie egestas mauris diam quis ipsum. Curabitur auctor adipiscing nunc ornare egestas. Nulla facilisi. Maecenas felis sem, pharetra in euismod in, fringilla vitae justo. Maecenas facilisis tincidunt vulputate. Maecenas semper augue eget ipsum ornare ac suscipit arcu vestibulum. Vivamus facilisis, enim non feugiat interdum, justo dolor pellentesque tellus, et eleifend mi ante vel lectus. Fusce nec nisi in tortor adipiscing accumsan ut vel ipsum. Mauris et erat erat, eu pellentesque erat. Aliquam urna risus, rutrum id facilisis et, volutpat quis felis. Vivamus molestie pharetra sollicitudin. Praesent id neque dui. Cras eu dolor massa. 
+	<div id="plugin_1_dialog" class="dlg" title="Plugin 1: HD Monitor">
+		<script type=text/javascript>
+		function generate_charts_plugin_1()
+		{
+			//plugin 1 graph stuff
+			var graph1 = Raphael('plugin_1_dialog_graph_1');
+			var graph2 = Raphael('plugin_1_dialog_graph_2');
+			var graph3 = Raphael('plugin_1_dialog_graph_3');
+			var graph4 = Raphael('plugin_1_dialog_graph_4');			
+			// Creates pie chart at with center at x, y,
+			// radius r and data: [55, 20, 13, 32, 5, 1, 2]
+			graph1.g.piechart(50, 50, 40,[25,25,50]);
+			graph2.g.piechart(50, 50, 40,[10,40,50]);		
+			graph3.g.piechart(50, 50, 40,[25,25,50]);
+			graph4.g.piechart(50, 50, 40,[10,40,50]);	
+		}
+		function plugin_1_loader()
+		{
+			generate_charts_plugin_1();
+			$('.graph').removeClass('graph_hidden').addClass('graph');
+		}
+
+		</script>
+		<button onclick="plugin_1_loader()">Load Data &rarr;</button>
+		<div class="graphs_container">		
+			<ul>
+				<li id="plugin_1_dialog_graph_1" class="graph_hidden"></li>
+				<li id="plugin_1_dialog_graph_2" class="graph_hidden"></li>
+				<li id="plugin_1_dialog_graph_3" class="graph_hidden"></li>
+				<li id="plugin_1_dialog_graph_4" class="graph_hidden"></li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+
+		<p>HD-Chart</p>
+		
 	</div>	
 	<script type="text/javascript">
 		//plugin dialog properties
