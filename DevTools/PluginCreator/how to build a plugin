@@ -1,0 +1,32 @@
+a plugin consists of two pieces of information
+
+one is the actual plugin program
+
+the other is a file for the server to know the data that needs to be sent to the web client
+
+VALID UI OBJECTS
+1: Textbox
+2: Pie Chart
+
+Data is send via comma seperated values
+
+
+POST REQUESTS
+
+[s]            -serverlist
+[p###]         -plugin list (server)
+[d###-###]     -plugin data (server, plugin)
+
+
+
+[s]
+&server1name,ip,num&server2name,ip,num&server3name,ip,num
+
+[p###]
+&pluginname,numberofarguments,pluginID
+
+UIELEMENT:width:height:args*:*,UIELEMENT
+
+EG:
+&HDDMonitor,2,2:200:200:arg1:arg2,1,200:50:"Used % MB out of % MB":args1:args2&plugin2 etc
+
