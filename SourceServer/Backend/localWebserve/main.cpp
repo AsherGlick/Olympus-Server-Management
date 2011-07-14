@@ -1,6 +1,6 @@
 #define MAXDATASIZE 100
 #include "ashsockPP.h"   // Basic Socet Functionality
-#include "ashAjaxPP.h"
+#include "ashHTMLPP.h"
 #include <fstream>
 #include <iostream>
 #include <stdio.h>
@@ -24,28 +24,36 @@ int main () {
       while (data == "") {
         data = waitData (clientSockFD);
       }
-      cout << data << endl;
-      ifstream f;
-      f.open(string("../../Frontend"+getGET(data)).c_str());
-      string file = "";
-      int total = 0;
-      while (f.good()) {
-        file = "";
-        
-        for (int i = 0; i < 4024; i++) {
-          if (!f.good()) {
-            file = file.substr(0,file.size()-1);
-            break;
+      html newPack = html(data);
+//      cout << "--RAW--" << endl;
+//      cout << newPack.raw << endl;
+      cout << "--: TYPE:" << newPack.type << endl;
+      cout << "--: REQUEST:" << newPack.request << endl;
+      cout << "--: HOST:" << newPack.host << endl;
+      cout << "--: POST:" << newPack.post << ":" << endl;
+      if (newPack.type == "GET") {
+        ifstream f;
+        f.open(string("../../Frontend"+newPack.request).c_str());
+        string file = "";
+        int total = 0;
+        while (f.good()) {
+          file = "";
+          
+          for (int i = 0; i < 4024; i++) {
+            if (!f.good()) {
+              file = file.substr(0,file.size()-1);
+              break;
+            }
+            file += f.get();
+            total++;
           }
-          file += f.get();
-          total++;
-        }
-	      while (!sendData (clientSockFD, file)){
-          //perror("send");
-	        //cout << "send ERROR!" << getGET (data)<< "! " << total << "bytes" << endl; 
-	      }
-	      {
-	        //cout << getGET (data) << " SENT " << total << "bytes" << endl;
+	        while (!sendData (clientSockFD, file)){
+            //perror("send");
+	          //cout << "send ERROR!" << getGET (data)<< "! " << total << "bytes" << endl; 
+	        }
+	        {
+	          //cout << getGET (data) << " SENT " << total << "bytes" << endl;
+	        }
 	      }
 	    }
 	    close(clientSockFD);
