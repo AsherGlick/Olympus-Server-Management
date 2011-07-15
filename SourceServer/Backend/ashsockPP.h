@@ -158,7 +158,7 @@ int waitSelf(int & clientSockFD, int & sockFD){
     }
     inet_ntop(their_addr.ss_family,get_in_addr((struct sockaddr *)&their_addr),s, sizeof s);
     printf("server: got connection from %s\n", s);
-    if (std::string(s) != "127.0.0.1") {
+    if (std::string(s) != "127.0.0.1" && std::string(s) != "192.168.1.104") {
       close(clientSockFD);
       return -1;
     }
