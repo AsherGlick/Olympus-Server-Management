@@ -28,16 +28,58 @@
 	//=== SERVER URL			===/
 	serverURL = "http://127.0.0.1/RCOS/actions.php";
 	currentNumPlugins = 0;
+	currentServerId = 0;
 	
 	//show plugins(remote_server_id_number)
 	function show_plugins(id_num){
+		currentServerId = id_num;
 		 $.ajax({
 		   type: "GET",
 		   url: serverURL,
-		   data: "d/"+id_num+"/p",
-		   success: function(html){$("#running_plugins").html(html);},
+		   data: "p"+id_num,
+		   success: function(data){
+		   	var plugins = data.split('&');
+		   	
+		   	//=== Create Running Plugins Grid	===//
+		   	$("#running_plugins").append('<!--PLUGINS GRID-->');
+			for(var i = 0; i < plugins.length; i++)
+			{
+				var plugin = plugins[i].split(',');
+				  var plugin_name = plugin[0];
+				  var plugin_num_args = plugin[1];
+				  var plugin_id = plugin[2];
+				$("#running_plugins").append('<div class="plugin_container_base" id="plugin_'+plugin_id+'">');
+				$("#running_plugins").append('<a href="#" onclick="open_dialog('+plugin_id+')" ><img src="plugins/'+plugin_name+'.png"></a>');
+				$("#running_plugins").append('</div>');
+			}
+			$("#running_plugins").append('<div class="clear"></div>');
+			$("#running_plugins").append('<!--END PLUGINS GRID-->');
+			//=== END PLUGINS GRID	===//		   	
+		   	
+		   	//=== Create Plugins		===//
+		   	for(var j = 0; i < plugins.length; i++)
+		   	{
+		   		var plugin = plugins[i].split(',');
+				  var plugin_name = plugin[0];
+				  var plugin_num_args = plugin[1];
+				  var plugin_id = plugin[2];
+		   		$("#running_plugins").append('<!--BEGIN Plugin '+plugin_id+'-->');
+		   		$("#running_plugins").append('<div id="plugin_'+plugin_id+'_dialog" class="dlg" title="'+plugin_name+'">');
+		   		$("#running_plugins").append('<script type="text/javascript">');
+		   		$("#running_plugins").append('//=== plugin '+plugin_id+' dialog properties   ===//');	
+		   		$("#running_plugins").append('$(\'#plugin_'+plugin_id+'_dialog\').dialog({autoOpen:false,show:"scale",width:300,height:300,maxWidth:500,maxHeight:500,scroll:true,position:['+(j*10)+','(j*10)'],});');
+		   		$("#running_plugins").append('//=== end plugin '+plugin_id+' dialog properties ===//');
+		   		$("#running_plugins").append('//=== Plugin '+plugin_id+' LOADER		===//');
+		   				
+		   		
+		   	}
+		   	
+		   	//=== End Create Plugins	===//
+		   	
+		   },
 		   error: function(html){$("#running_plugins").html("<p>Error loading data</p>")}
-		 });	
+		 });
+		 $('#currentServ').html("Plugins running on Server "+id_num);	
 		 $('#running_plugins').slideDown();	
 		 $('#running_plugins').effect("highlight", {color: "#1F497D"}, 500);
 	 	
@@ -122,7 +164,7 @@
 		<div class="clear">&nbsp;</div>
 		
 		<div class="full_box" id="running_plugins">	
-			<h3>Plugins Running on server ####</h3>
+			<h3 id="currentServ"></h3>
 			<img src="cssimg/loading3.gif" alt="loading" />
 			
 
