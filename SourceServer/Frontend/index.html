@@ -64,14 +64,20 @@
 				  var plugin_num_args = plugin[1];
 				  var plugin_id = plugin[2];
 		   		$("#running_plugins").append('<!--BEGIN Plugin '+plugin_id+'-->');
-		   		$("#running_plugins").append('<div id="plugin_'+plugin_id+'_dialog" class="dlg" title="'+plugin_name+'">');
+		   		
+		   		//--Plugin Scripts	--//
 		   		$("#running_plugins").append('<script type="text/javascript">');
 		   		$("#running_plugins").append('//=== plugin '+plugin_id+' dialog properties   ===//');	
 		   		$("#running_plugins").append('$(\'#plugin_'+plugin_id+'_dialog\').dialog({autoOpen:false,show:"scale",width:300,height:300,maxWidth:500,maxHeight:500,scroll:true,position:['+(j*10)+','(j*10)'],});');
 		   		$("#running_plugins").append('//=== end plugin '+plugin_id+' dialog properties ===//');
-		   		$("#running_plugins").append('//=== Plugin '+plugin_id+' LOADER		===//');
-		   				
-		   		
+		   		//$("#running_plugins").append('//=== Plugin '+plugin_id+' LOADER		===//');
+		   		//--------------------//
+		   		$("#running_plugins").append('<div id="plugin_'+plugin_id+'_dialog" class="dlg" title="'+plugin_name+'">');
+		   		$('#plugin_'+plugin_id+'_dialog').append('<button id="plugin_'+plugin_id+'_load_button" class="load_button" onclick="plugin_'+plugin_id+'_loader()">Load Plugin Data &rarr;</button>');
+		   		$('#plugin_'+plugin_id+'_dialog').append('<p><br /></p>');
+		   		$('#plugin_'+plugin_id+'_dialog').append('</div>');	
+		   			   		
+		   		$("#running_plugins").append('<!--END Plugin '+plugin_id+'-->');
 		   	}
 		   	
 		   	//=== End Create Plugins	===//
