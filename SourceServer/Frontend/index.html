@@ -26,7 +26,7 @@
 		
 	<script type="text/javascript">	
 	//=== SERVER URL			===/
-	serverURL = "http://127.0.0.1/";
+	serverURL = "/";
 	currentNumPlugins = 0;
 	currentServerId = 0;
 	
@@ -69,12 +69,22 @@
 		   		$("#running_plugins").append('<script type="text/javascript">');
 		   		$("#running_plugins").append('//=== plugin '+plugin_id+' dialog properties   ===//');	
 		   		$("#running_plugins").append('$(\'#plugin_'+plugin_id+'_dialog\').dialog({autoOpen:false,show:"scale",width:300,height:300,maxWidth:500,maxHeight:500,scroll:true,position:['+(j*10)+','+(j*10)+'],});');
-		   		$("#running_plugins").append('//=== end plugin '+plugin_id+' dialog properties ===//');
-		   		//$("#running_plugins").append('//=== Plugin '+plugin_id+' LOADER		===//');
+		   		$("#running_plugins").append('//=== End plugin '+plugin_id+' dialog properties ===//');
+		   		
+		   		$("#running_plugins").append('//=== Plugin '+plugin_id+' LOADER		===//');
+		   		$("#running_plugins").append('function plugin_'+plugin_id+'_loader(){$(\'#plugin_'+plugin_id+'_load_button\').hide();generate_charts_plugin_'+plugin_id+'();generate_data_plugin_'+plugin_id+'()}');
+				$("#running_plugins").append('//=== End Plugin '+plugin_id+' LOADER		===//');
+				
+		   		$("#running_plugins").append('//=== Plugin '+plugin_id+' Functions		===//');
+		   		$("#running_plugins").append('function generate_charts_plugin_'+plugin_id+'(){}function generate_data_plugin_'+plugin_id+'(){}');
+		   		$("#running_plugins").append('//=== End Plugin '+plugin_id+' Functions		===//');
+		   		
+		   		$("#running_plugins").append('&lt;/script&gt;'); 
 		   		//--------------------//
+		   		
 		   		$("#running_plugins").append('<div id="plugin_'+plugin_id+'_dialog" class="dlg" title="'+plugin_name+'">');
 		   		$('#plugin_'+plugin_id+'_dialog').append('<button id="plugin_'+plugin_id+'_load_button" class="load_button" onclick="plugin_'+plugin_id+'_loader()">Load Plugin Data &rarr;</button>');
-		   		$('#plugin_'+plugin_id+'_dialog').append('<p><br /></p>');
+		   		$('#plugin_'+plugin_id+'_dialog').append('<p><br /> Just loading dialog and load button. Load button should disappear when clicked and execute 2 empty functions</p>');
 		   		$('#plugin_'+plugin_id+'_dialog').append('</div>');	
 		   			   		
 		   		$("#running_plugins").append('<!--END Plugin '+plugin_id+'-->');
