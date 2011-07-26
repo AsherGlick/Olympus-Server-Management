@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <script type="text/javascript" src="parse.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+      var UIinfo = "megs ,%1, used out of ,%2, megs total";
+      var dataList = ("1,20,33,400").split(',');
+      UIlist = UIinfo.split(',');
+      for (n in UIlist) {
+        //alert(UIlist[n]);
+      }
+      alert (parseData(UIlist,dataList));
+      alert(UIlist);
+    </script>
+  </body>
+</html>  
