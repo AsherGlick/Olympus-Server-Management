@@ -221,7 +221,7 @@
 							  var server_ip = server[1];
 							  var server_id = server[2];
 							var gen_link = '<li><a href="#" id="'+server_id+'" onclick="show_plugins('+server_id+')">'+server_name+'</a> - <span class="italics">'+server_ip+'</span></li>';
-							$("#server_list_data").html(gen_link);
+							$("#server_list_data").append(gen_link);
 						}
 					   },
 					   error: function(data){$("#server_list_data").html("<p>Error loading data</p>")}
