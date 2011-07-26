@@ -191,9 +191,9 @@
 					   url: serverURL,
 					   data: "gp",
 					   success: function(data){
-					   	$("#global_plugins_data").html(html);
+					   	$("#global_plugins_data").html(data);
 					   },
-					   error: function(html){$("#global_plugins_data").html("<p>Error loading data</p>")}
+					   error: function(data){$("#global_plugins_data").html("<p>Error loading data</p>")}
 					 });	
 				</script>
 			</ul>
@@ -220,7 +220,7 @@
 							$("#server_list_data").html(gen_link);
 						}
 					   },
-					   error: function(html){$("#server_list_data").html("<p>Error loading data</p>")}
+					   error: function(data){$("#server_list_data").html("<p>Error loading data</p>")}
 					 });		
 				</script>
 			</ul>			
