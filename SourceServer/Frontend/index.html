@@ -205,7 +205,7 @@
 		<div class="large_content" id="server_list">
 			<h3>Remote Server List</h3>
 			<ul id="server_list_data">
-				<img src="cssimg/loading3.gif" alt="loading" />
+				<img id="server_list_loading_icon" src="cssimg/loading3.gif" alt="loading" />
 				<script type="text/javascript">
 					$.ajax({
 					   type: "POST",
@@ -223,6 +223,7 @@
 							var gen_link = '<li><a href="#" id="'+server_id+'" onclick="show_plugins('+server_id+')">'+server_name+'</a> - <span class="italics">'+server_ip+'</span></li>';
 							$("#server_list_data").append(gen_link);
 						}
+						$('#server_list_loading_icon').hide();
 					   },
 					   error: function(data){$("#server_list_data").html("<p>Error loading data</p>")}
 					 });		
