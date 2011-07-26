@@ -4,7 +4,15 @@
 #include <fstream>
 #include <iostream>
 #include <stdio.h>
+
+#include "charprint.h"
+
 using namespace std;
+
+
+string expand(string data, int size) {
+  return data+string(size-data.size(),' ');
+}
 
 
 int main () {
@@ -25,36 +33,49 @@ int main () {
         data = waitData (clientSockFD);
       }
       html newPack = html(data);
-      cout << "--RAW--" << endl;
-      cout << newPack.raw << endl;
-      cout << "--: TYPE:" << newPack.type << endl;
-      cout << "--: REQUEST:" << newPack.request << endl;
-      cout << "--: HOST:" << newPack.host << endl;
+      //cout << "---- RAW ----" << endl;
+      //charprint(newPack.raw);
+      //cout << "-- END RAW --" << endl;
+      cout << "--: TYPE:" << newPack.type << '\t';
+      cout << "--: REQUEST:" << expand(newPack.request,50) << '\t';
+      cout << "--: HOST:" << newPack.host << '\t';
       cout << "--: POST:" << newPack.post << endl;
       if (newPack.type == HTML_GET) {
         ifstream f;
         f.open(string("../Frontend"+newPack.request).c_str());
         string file = "";
+        /*
         int total = 0;
         while (f.good()) {
           file = "";
           
-          for (int i = 0; i < 4024; i++) {
+          
+          for (int i = 0; i < 4096; i++) {
             if (!f.good()) {
               file = file.substr(0,file.size()-1);
               break;
             }
             file += f.get();
             total++;
-          }
+          }          
 	        while (!sendData (clientSockFD, file)){
-            //perror("send");
-	          cout << "\rsend ERROR!!" << newPack.request; 
+            //fprintf(stderr, "send ERROR!!\n");
+	          //cout << "send ERROR!!" << newPack.request; 
+	          perror("send");
 	        }
 	        {
 	          //cout << getGET (data) << " SENT " << total << "bytes" << endl;
 	        }
 	      }
+	      //**/                                                              /*\
+        \*/ string part = "";                                              /*\
+        \*/ while (getline(f,part)) {                                      /*\
+        \*/   file += part +'\n';                                                /*\
+        \*/ }                                                              /*\
+        \*/ int size = sendData (clientSockFD, file);                      /*\
+        \*/ if (!size) {                          /*\
+        \*/   perror("send");                                              /*\
+        \*/ }
 	    }
 	    else if (newPack.type == HTML_POST) {
 	      if (newPack.post[0] == 's') {
@@ -81,4 +102,3 @@ int main () {
 	  close(clientSockFD);
 	}
 }
-

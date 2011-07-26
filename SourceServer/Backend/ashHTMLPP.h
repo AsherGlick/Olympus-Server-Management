@@ -13,6 +13,7 @@ class html {
     std::string request;
     std::string post;
     std::string raw;
+    bool set;
   public:
     html(std::string);
   private:
@@ -56,6 +57,7 @@ html::html(std::string input) {
       break;
     }
   }
+  set = true;
 }
 
 /******************************************************************************\

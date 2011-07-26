@@ -61,7 +61,7 @@ std::string waitData (int & clientSockFD){
   int totalSize = 0;
   data = (char *)malloc (sizeof(char)*0);
   int i = 0;
-  std::string output;
+  std::string output = "";
   while (1) {
     for (i = 0; i < MAXDATASIZE; i++) {
       buf[i] = 'Z';
@@ -69,7 +69,13 @@ std::string waitData (int & clientSockFD){
     if ((numbytes = recv(clientSockFD, buf, MAXDATASIZE-1, 0)) == -1) {
       // no data waiting
       //continue;
-      break;
+      if (totalSize == 0) {
+        free (data);
+        return "";
+      }
+      else {
+        break;
+      }
     }
     if (numbytes == 0){
       //if a null byte is transfered the socket is closed
@@ -92,6 +98,7 @@ std::string waitData (int & clientSockFD){
     for (;i < totalSize; i++) {
       tempData[i] = buf[i-(totalSize-numbytes)];
     }
+    //printf("Recieved  %i bytes\t", numbytes);
     tempData[totalSize] = '\0';
     //printf("test mark 3\n");
     free (data);
@@ -104,12 +111,22 @@ std::string waitData (int & clientSockFD){
   return output;
 }
 
-/*\
-| Send data away
-\*/
-bool sendData (int & clientSockFD, const std::string & output){
-  if (send(clientSockFD, output.c_str(), output.size(), 0) == -1)
-              return false;
+/********************************** Send Data *********************************\
+| This function sends out data and returns on sucess or failure
+\******************************************************************************/
+bool sendData (int & clientSockFD, std::string output){
+  int size = output.size();
+  int sentData = 0;
+  while (sentData < size) {
+    size -= sentData;
+    output = output.substr(sentData,size);
+    sentData = send(clientSockFD, output.c_str(), size, 0);
+    if (sentData <= -1) {
+      sentData = 0;
+      continue;
+    }
+  }
+  if (size-sentData < 0) printf("NEGBYTES%i\n",(size-sentData));
   return true;
 }
 
@@ -131,7 +148,7 @@ void waitClient(int & clientSockFD, int & sockFD){
       continue;
     }
     inet_ntop(their_addr.ss_family,get_in_addr((struct sockaddr *)&their_addr),s, sizeof s);
-    printf("server: got connection from %s\n", s);
+    //printf("server: got connection from %s\n", s);
     
     fcntl(clientSockFD,F_SETFL,O_NONBLOCK);
     
@@ -157,8 +174,8 @@ int waitSelf(int & clientSockFD, int & sockFD){
       continue;
     }
     inet_ntop(their_addr.ss_family,get_in_addr((struct sockaddr *)&their_addr),s, sizeof s);
-    printf("server: got connection from %s\n", s);
-    if (std::string(s) != "127.0.0.1" && std::string(s) != "192.168.1.104") {
+    //printf("server: got connection from %s\n", s);
+    if (std::string(s) != "127.0.0.1" && std::string(s).substr(0,7) != "192.168") {
       close(clientSockFD);
       return -1;
     }
