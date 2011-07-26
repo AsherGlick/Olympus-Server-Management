@@ -69,12 +69,13 @@
 		   		$("#running_plugins").append('<script type="text/javascript">');
 		   		$("#running_plugins").append('//=== plugin '+plugin_id+' dialog properties   ===//');	
 		   		$("#running_plugins").append('$(\'#plugin_'+plugin_id+'_dialog\').dialog({autoOpen:false,show:"scale",width:300,height:300,maxWidth:500,maxHeight:500,scroll:true,position:['+(j*10)+','+(j*10)+'],});');
-		   		$("#running_plugins").append('//=== end plugin '+plugin_id+' dialog properties ===//');
-		   		//$("#running_plugins").append('//=== Plugin '+plugin_id+' LOADER		===//');
+		   		$("#running_plugins").append('//=== End plugin '+plugin_id+' dialog properties ===//');
+		   		$("#running_plugins").append('&lt;/script&gt;'); 
 		   		//--------------------//
+		   		
 		   		$("#running_plugins").append('<div id="plugin_'+plugin_id+'_dialog" class="dlg" title="'+plugin_name+'">');
-		   		$('#plugin_'+plugin_id+'_dialog').append('<button id="plugin_'+plugin_id+'_load_button" class="load_button" onclick="plugin_'+plugin_id+'_loader()">Load Plugin Data &rarr;</button>');
-		   		$('#plugin_'+plugin_id+'_dialog').append('<p><br /></p>');
+		   		$('#plugin_'+plugin_id+'_dialog').append('<button id="plugin_'+plugin_id+'_load_button" class="load_button" onclick="plugin_loader('+id_num+','+plugin_id+')">Load Plugin Data &rarr;</button>');
+		   		$('#plugin_'+plugin_id+'_dialog').append('<p><br /> Just loading dialog and load button. Load button should disappear when clicked and execute 2 empty functions</p>');
 		   		$('#plugin_'+plugin_id+'_dialog').append('</div>');	
 		   			   		
 		   		$("#running_plugins").append('<!--END Plugin '+plugin_id+'-->');
@@ -89,6 +90,64 @@
 		 $('#running_plugins').slideDown();	
 		 $('#running_plugins').effect("highlight", {color: "#1F497D"}, 500);
 	 	
+	}
+	
+	function plugin_loader(server,plugin)
+	{
+		//hide load button
+		$("#plugin_"+plugin+"_load_button").hide();
+		$('#plugin_'+plugin+'_dialog').html('<img id="plugin_'+plugin+'_loader_img" src="cssimg/loading3.gif" alt="loading" /><div id="plugin_'+plugin+'_dialog_graphs_container" class="graphs_container"></div>');
+		
+		$.ajax({
+		   type: "POST",
+		   url: serverURL,
+		   data: "l"+server+"-"+plugin+",
+		   success: function(data){ 	
+			$('#plugin_'+plugin+'_loader_img').fadeOut();
+			
+		   	var uiElements = data.split('&');
+			for(var i = 0; i < uiElements.length; i++)
+			{
+				var element = uiElements[i].split(',');
+				  var element_type = uiElements[0];
+				  var element_width = uiElements[1];
+				  var element_height = uiElements[2];
+
+				if(element_type == 2)
+				{
+					//generate pie chart element
+					$('#plugin_'+plugin+'_dialog_graphs_container').append('<div id="plugin_'+plugin+'_dialog_element_'+i+'" style="width:'+element_width+'px;height:'+element_height+'px"></div>');
+	 				
+	 				//generate the chart
+	 				var graph = Raphael("plugin_"+plugin+"_dialog_element_"+i);
+	                graph.g.txtattr.font = "12px 'Fontin Sans', Fontin-Sans, sans-serif";
+	                graph.g.text(110, 15, "Graph Title").attr({"font-size": 16});
+	                
+	                var graph_pie = graph1.g.piechart(110, 100, (element_height-40), [60, 40], {legend: ["Legend item", "Legend Item"], legendpos: "east",stroke: '#1F497D'});
+	                graph_pie.hover(function () {
+	                    this.sector.stop();
+	                    this.sector.scale(1.1, 1.1, this.cx, this.cy);
+	                    if (this.label) {
+	                        this.label[0].stop();
+	                        this.label[0].scale(1.5);
+	                        this.label[1].attr({"font-weight": 800});
+	                    }
+	                }, function () {
+	                    this.sector.animate({scale: [1, 1, this.cx, this.cy]}, 500, "bounce");
+	                    if (this.label) {
+	                        this.label[0].animate({scale: 1}, 500, "bounce");
+	                        this.label[1].attr({"font-weight": 400});
+	                    }
+	                });					
+					
+				}
+			}	
+			//add clear to graphs container
+			$('#plugin_'+plugin+'_dialog_graphs_container').append('<div class="clear"></div>');	   	
+			
+		   },
+		   error: function(html){$("#server_list_data").html("<p>Error loading data</p>")}
+		 });		
 	}
 	
 	function open_dialog(plugin_num)

@@ -62,7 +62,7 @@
 		function plugin_1_loader()	
 		{
 			//hide load button
-			$('#plugin_1_load_button').hide();
+			$("#plugin_1_load_button").hide();
 			
 			//generate charts here
 			generate_charts_plugin_1();
@@ -252,7 +252,7 @@
 			generate_charts_plugin_3();
 
 			//load other stuff here
-			// here
+			generate_data_plugin_3();
 		}
 		//=== END Plugin 3 LOADER	===//
 		
