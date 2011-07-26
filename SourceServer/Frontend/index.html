@@ -37,6 +37,7 @@
 		   type: "GET",
 		   url: serverURL,
 		   data: "p"+id_num,
+		   dataType: "html",
 		   success: function(data){
 		   	var plugins = data.split('&');
 		   	
@@ -102,6 +103,7 @@
 		   type: "POST",
 		   url: serverURL,
 		   data: "l"+server+"-"+plugin,
+		   dataType: "html",
 		   success: function(data){ 	
 			$('#plugin_'+plugin+'_loader_img').fadeOut();
 			
@@ -190,6 +192,7 @@
 					   type: "POST",
 					   url: serverURL,
 					   data: "gp",
+					   dataType: "html",
 					   success: function(data){
 					   	$("#global_plugins_data").html(data);
 					   },
@@ -208,6 +211,7 @@
 					   type: "POST",
 					   url: serverURL,
 					   data: "s",
+					   dataType: "html",
 					   success: function(data){ 	
 					   	var servers = data.split('&');
 						for(var i = 0; i < servers.length; i++)
