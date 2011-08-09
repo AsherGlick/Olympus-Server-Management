@@ -1,4 +1,5 @@
-rootIP: 127.0.0.1
+sourceIP: 127.0.0.1
 clientID: 0001
-NOTE: the client ID is the unique number of the computer. in the future it will probably be denoted by public key encryption. The client sends their public key over plaintext to the root. If it matches the pub-key in memory then that pubkey is used to decipher all data over the socket.
+sourcePORT: 9574
+#NOTE: the client ID is the unique number of the computer. in the future it will probably be denoted by public key encryption. The client sends their public key over plaintext to the root. If it matches the pub-key in memory then that pubkey is used to decipher all data over the socket.
 

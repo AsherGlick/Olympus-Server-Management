@@ -34,12 +34,13 @@ fileList = os.listdir('./plugins');
 fileList[:] = [f for f in fileList if (f[len(f)-3:len(f)] == ".py")]
 
 def run_prog(__prog_path,__prog_name,__out_queue):
+  print "Running", __prog_name
   __prog_name = __prog_name[0:__prog_name.find(".py")]
   #__prog_path and __prog_name are both variables that can be accessed inside of
   # the run program and these are used for clarification when sending data back
   # to the source server, when the validation
   # scripts written these variables will be 'un valid' to be plugins
-  def sendOut (data):
+  def sendOut (*data):
     output = __prog_name + ":"
     for i in data:
       output += i + ","
@@ -68,6 +69,7 @@ HOST = '127.0.0.1'    # The remote host (this value will be loaded dynamicly fro
 PORT = 9574           # The same port as used by the server
 s = None
 while 1:
+  break
   for res in socket.getaddrinfo(HOST, PORT, socket.AF_UNSPEC, socket.SOCK_STREAM):
     af, socktype, proto, canonname, sa = res
     try:
@@ -96,5 +98,5 @@ while True:
   read = outqueue.get()
   print read
   #data transfer goes through here
-  s.send(read)
+  #s.send(read)
 

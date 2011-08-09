@@ -40,43 +40,24 @@ int main () {
       cout << "--: REQUEST:" << expand(newPack.request,50) << '\t';
       cout << "--: HOST:" << newPack.host << '\t';
       cout << "--: POST:" << newPack.post << endl;
+      
+      
       if (newPack.type == HTML_GET) {
         ifstream f;
+        
         f.open(string("../Frontend"+newPack.request).c_str());
         string file = "";
-        /*
-        int total = 0;
-        while (f.good()) {
-          file = "";
-          
-          
-          for (int i = 0; i < 4096; i++) {
-            if (!f.good()) {
-              file = file.substr(0,file.size()-1);
-              break;
-            }
-            file += f.get();
-            total++;
-          }          
-	        while (!sendData (clientSockFD, file)){
-            //fprintf(stderr, "send ERROR!!\n");
-	          //cout << "send ERROR!!" << newPack.request; 
-	          perror("send");
-	        }
-	        {
-	          //cout << getGET (data) << " SENT " << total << "bytes" << endl;
-	        }
-	      }
-	      //**/                                                              /*\
-        \*/ string part = "";                                              /*\
-        \*/ while (getline(f,part)) {                                      /*\
-        \*/   file += part +'\n';                                                /*\
-        \*/ }                                                              /*\
-        \*/ int size = sendData (clientSockFD, file);                      /*\
-        \*/ if (!size) {                          /*\
-        \*/   perror("send");                                              /*\
-        \*/ }
+        string part = "";
+        while (getline(f,part)) {
+          file += part +'\n';
+        }
+        int size = sendData (clientSockFD, file);
+        if (!size) {
+          perror("send");
+        }
 	    }
+	    
+	    
 	    else if (newPack.type == HTML_POST) {
 	      if (newPack.post[0] == 's') {
 	        cout << "SERVER LIST" << endl;
