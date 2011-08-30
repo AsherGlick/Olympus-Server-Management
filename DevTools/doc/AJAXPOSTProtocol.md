@@ -1,25 +1,29 @@
-### The web-browser post commands to receive data ###
+### The web-browser post commands to receive data
 
 POST REQUESTS
 
-`[s]       `     -serverlist  
-`[p###]    `     -plugin list (server)  
+`[s]`            -serverlist  
+`[p###]`         -plugin list (server)  
 `[l###-###]`     -load plugin (server, plugin)  
 `[d###-###]`     -plugin data (server, plugin)  
 
 
 
-[s]
-   server1name,ip,num
-   server1name,ip,num&server2name,ip,num&server3name,ip,num
+Server List [s]  
+---------------
+    server1name,ip,num
+    server1name,ip,num&server2name,ip,num&server3name,ip,num
 
-[p###]
-   &pluginname,numberofarguments,pluginID
-   pluginname,numberofarguments,pluginID&pluginname,numberofarguments,pluginID
+Plugin List [p###]
+------------------
+    &pluginname,numberofarguments,pluginID  
+    pluginname,numberofarguments,pluginID&pluginname,numberofarguments,pluginID
 
-[l###-###]
-   UIELEMENT,width,height,args*,*s
-   UIELEMENT,width,height,args*,*s&UIELEMENT,width,height,args*,*s
+UI List [l###-###]
+------------------  
+    UIELEMENT,width,height,args*,*s
+    &UIELEMENT,width,height,args*,*s&UIELEMENT,width,height,args*,*s
 
-[d###-###]
-   arg1,arg2,arg3,arg4,arg5
+Plugin Data [d###-###]
+----------------------
+    arg1,arg2,arg3,arg4,arg5

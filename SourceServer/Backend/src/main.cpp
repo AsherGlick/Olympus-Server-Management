@@ -1,5 +1,5 @@
 #define MAXDATASIZE 100
-#include "ashsockPP.h"   // Basic Socet Functionality
+#include "ashsockPP.h"   // Basic Socket Functionality
 #include "ashHTMLPP.h"
 #include <fstream>
 #include <iostream>
@@ -22,13 +22,17 @@ int main () {
   string port = "80";
   //bind socket
   bindPort (sockfd, port);
-  cout << "bound port" << endl;
+  cout << "[INFO] Bound Port " << port << endl;
   //load webpath
   ifstream webPathF;
   string webPath;
   webPathF.open("webPath");
   getline(webPathF,webPath);
-  cout << "Web Path Set as " << webPath << endl;
+  if (webPath == "") {
+    cout << "[WARNING] No Web Path Found. Using Default Webpath" << endl;
+    webPath = "./web";
+  }
+  cout << "[INFO]Web Path Set as " << webPath << endl;
  
   while (true) {
     if (waitSelf(clientSockFD, sockfd) == -1) continue;
@@ -42,12 +46,11 @@ int main () {
       //cout << "---- RAW ----" << endl;
       //charprint(newPack.raw);
       //cout << "-- END RAW --" << endl;
-      cout << "--: TYPE:" << newPack.type << '\t';
-      cout << "--: REQUEST:" << expand(newPack.request,50) << '\t';
-      cout << "--: HOST:" << newPack.host << '\t';
-      cout << "--: POST:" << newPack.post << endl;
+      cout << "--: TYPE:"    << expand(newPack.type   ,5) << "--: REQUEST:" << expand(newPack.request,50) << "--: HOST:"    << expand(newPack.host,20) << "--: POST:" << newPack.post << endl;
       
-      
+        ///////////////////
+       // PAGE REQUESTS //
+      ///////////////////
       if (newPack.type == HTML_GET) {
         ifstream f;
         
@@ -63,7 +66,9 @@ int main () {
         }
 	    }
 	    
-	    
+	      ///////////////////
+	     // DATA REQUESTS //
+	    ///////////////////
 	    else if (newPack.type == HTML_POST) {
 	      if (newPack.post[0] == 's') {
 	        cout << "SERVER LIST" << endl;
