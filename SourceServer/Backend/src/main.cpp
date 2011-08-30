@@ -20,9 +20,15 @@ int main () {
   int sockfd;
   int clientSockFD;
   string port = "80";
-  
+  //bind socket
   bindPort (sockfd, port);
   cout << "bound port" << endl;
+  //load webpath
+  ifstream webPathF;
+  string webPath;
+  webPathF.open("webPath");
+  getline(webPathF,webPath);
+  cout << "Web Path Set as " << webPath << endl;
  
   while (true) {
     if (waitSelf(clientSockFD, sockfd) == -1) continue;
@@ -45,7 +51,7 @@ int main () {
       if (newPack.type == HTML_GET) {
         ifstream f;
         
-        f.open(string("../Frontend"+newPack.request).c_str());
+        f.open(string(webPath+newPack.request).c_str());
         string file = "";
         string part = "";
         while (getline(f,part)) {
