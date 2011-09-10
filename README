@@ -23,11 +23,3 @@ how will the plugins actualy work? will they be run a forks of the original prog
 if so then they should share some basic file pointers connecting them to the original sockets
 this is a good idea. Creating a language that interfaces with the remote program is ok however how will the
 program communicate with custom interfaces on the computer.
-
-Sample plugins
- - Minecraft terminal
- - Generic System Information
- - 
-
-
-

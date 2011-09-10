@@ -21,7 +21,7 @@ class html {
     void setHost();
 };
 /******************************************************************************\
-| The main constructor for the variables
+| The main constructor for the variables                                       |
 \******************************************************************************/
 html::html(std::string input) {
   raw = input;
