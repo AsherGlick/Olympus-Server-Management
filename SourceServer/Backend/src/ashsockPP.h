@@ -3,6 +3,15 @@
 | this is a port for c (not much change) for basic low level socket control
 | to be used in a more convienient C++ 
 */
+/********************************* FUNCTIONS **********************************\
+| sigchl_handler(int s)                                                        |
+| void *get_in_addr(struct sockaddr *sa)                                       |
+| std::string waitData (int & clientSockFD)                                    |
+| bool sendData (int & clientSockFD, std::string output)                       |
+| void waitClient(int & clientSockFD, int & sockFD)                            |
+| int waitSelf(int & clientSockFD, int & sockFD)      [Soon to be depricated]  |
+| void bindPort (int & sockfd, std::string port)                               |
+\******************************************************************************/
 #ifndef _ASHSOCK_PP_H_
 #define _ASHSOCK_PP_H_
 #include <stdio.h> // input out put
@@ -23,7 +32,7 @@
 
 #include "cstrstr.h"
 
-
+min
 
 //#ifndef MAXDATASIZE
 //  #define MAXDATASIZE 8000
@@ -157,9 +166,8 @@ void waitClient(int & clientSockFD, int & sockFD){
 }
 
 
-/********************************* Wait Client ********************************\
-| Wait client waits for a client to connect to the server and returns a sockFD |
-| that connects to the client. This file descripter can be used in waitData    |
+/********************************** Wait Self *********************************\
+| Only lets itself connect to the socket (or 192.168.x.x) soon to be depricated|
 \******************************************************************************/
 int waitSelf(int & clientSockFD, int & sockFD){
   socklen_t sin_size;

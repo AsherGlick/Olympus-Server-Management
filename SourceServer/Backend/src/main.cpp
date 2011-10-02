@@ -5,11 +5,18 @@
 #include <iostream>
 #include <stdio.h>
 
+//threads
+#include <pthread.h>
+
+
 #include "charprint.h"
 
 using namespace std;
 
-
+/******************************************************************************\
+| Expand is a simple function to expand the size of a string by padding it     |
+| with spaces. This is used for when we are trying to neatly print out tables  |
+\******************************************************************************/
 string expand(string data, int size) {
   return data+string(size-data.size(),' ');
 }
@@ -20,9 +27,10 @@ int main () {
   int sockfd;
   int clientSockFD;
   string port = "80";
-  //bind socket
-  bindPort (sockfd, port);
+  // Bind Socket
+  bindPort (sockfd, port); // From ashsockPP.h
   cout << "[INFO] Bound Port " << port << endl;
+  
   //load webpath
   ifstream webPathF;
   string webPath;
