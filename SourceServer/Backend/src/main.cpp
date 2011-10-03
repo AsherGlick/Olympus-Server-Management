@@ -30,8 +30,8 @@ string expand(string data, int size) {
 
 int main () {
   // Create Another Divice Thread
-  pthread_t * divice_thread = NULL;
-  pthread_create(divice_thread, NULL, waitoffWeb, NULL);
+  pthread_t divice_thread;
+  pthread_create(&divice_thread, NULL, waitoffWeb, NULL);
   // Bind Web Socket
   string rec_web_data = "";
   int web_sockfd;
@@ -73,9 +73,8 @@ int main () {
       // output the basic information of the connected client
       cout << "--: TYPE:"    << expand(newPack.type   ,5) << "--: REQUEST:" << expand(newPack.request,50) << "--: HOST:"    << expand(newPack.host,20) << "--: POST:" << newPack.post << endl;
       
-      /*///////////////////
-       // PAGE REQUESTS //
-      /////////////////*/
+      // PAGE REQUESTS //
+      // Send the web-browser the info that it needs
       if (newPack.type == HTML_GET)
       {
         ifstream f;
@@ -93,9 +92,8 @@ int main () {
         }
 	    }
 	    
-	    /*///////////////////
-	     // DATA REQUESTS //
-	    /////////////////*/
+	    // DATA REQUESTS //
+	    // If the type is post, the program checks the POST to respond correctly
 	    else if (newPack.type == HTML_POST) {
 	      if (newPack.post[0] == 's') {
 	        cout << "SERVER LIST" << endl;
