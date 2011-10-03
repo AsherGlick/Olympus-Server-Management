@@ -32,7 +32,6 @@
 
 #include "cstrstr.h"
 
-min
 
 //#ifndef MAXDATASIZE
 //  #define MAXDATASIZE 8000
