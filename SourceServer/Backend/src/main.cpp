@@ -120,6 +120,8 @@ int main () {
 	}
 	// End Waiting for connections
 }
+
+/* the program that is threaded in the begining */
 void *waitoffWeb(void *threadid) {
   // Bind Divice Socket
   string rec_web_data = "";
@@ -137,14 +139,16 @@ void *waitoffWeb(void *threadid) {
     if (!fork())
     {
       // Close the bound socket, we dont need to listen to it in the fork
-      close(web_sockfd); 
-      // while data is not recieved, continue waiting for data
-      rec_web_data = "";
-      while (rec_web_data == "")
-      {
-        rec_web_data = waitData (clientSockFD);
+      close(web_sockfd);
+      while (true){  
+        // while data is not recieved, continue waiting for data
+        rec_web_data = "";
+        while (rec_web_data == "")
+        {
+          rec_web_data = waitData (clientSockFD);
+        }
+        cout << "[DIVICE]: Received data on divice port [" << rec_web_data << "]" << endl;
       }
-     
 	    close(clientSockFD);
 	    return 0;
 	  }
