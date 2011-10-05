@@ -138,6 +138,7 @@ void *waitoffWeb(void *threadid) {
     // fork after a client connects so the main program can handle another client
     if (!fork())
     {
+      cout << "[DIVICE]: Opened Connection on 8080" << endl;
       // Close the bound socket, we dont need to listen to it in the fork
       close(web_sockfd);
       while (true){  
@@ -148,8 +149,10 @@ void *waitoffWeb(void *threadid) {
           rec_web_data = waitData (clientSockFD);
         }
         cout << "[DIVICE]: Received data on divice port [" << rec_web_data << "]" << endl;
+        cout << clientSockFD << endl;
       }
 	    close(clientSockFD);
+	    cout << "[DIVICE]: Closed connection" << endl;
 	    return 0;
 	  }
 	  close(clientSockFD);
