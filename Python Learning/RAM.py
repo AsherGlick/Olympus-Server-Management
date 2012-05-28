@@ -31,7 +31,7 @@ def winmem():
 	print x.dwAvailPageFile
 	print x.dwTotalVirtual
 	print x.dwAvailVirtual
-	return x	
+	return x
 	
 
 check_system() 	
