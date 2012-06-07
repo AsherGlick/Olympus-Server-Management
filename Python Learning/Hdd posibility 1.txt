@@ -1,0 +1,5 @@
+from win32com.client import GetObject
+wmiObj = GetObject("winmgmts:\\\\MGW01641\\root\\cimv2")
+diskinfo = wmiObj.ExecQuery("Select * from Win32_LogicalDisk")
+for disk in diskinfo:
+	print disk.Name, disk.FreeSpace

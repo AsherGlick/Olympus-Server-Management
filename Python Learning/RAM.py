@@ -1,5 +1,5 @@
 #This program runs a memory test for windows or unix based operating systems
-
+import subprocess
 import ctypes
 import os, platform	
 def check_system ():
@@ -47,11 +47,9 @@ if system ==  "Windows":#if windows...
 	
 	winmem()	
 	
-'''
+
 # The following runs for Linux (unix based) operating Systems	
-os [:] = [f for f in os if (f[len(f):len(f)] == "Linux")] 
-	import subprocess
-	import Popen
+if platform.name() == 'Linux':
 
 	class MemoryMonitor(object):
 
@@ -67,4 +65,3 @@ os [:] = [f for f in os if (f[len(f):len(f)] == "Linux")]
 				)
 			self.stdout_list = self.process.communicate()[0].split('\n')
 			return int(self.stdout_list[0])
-'''
