@@ -25,7 +25,7 @@
 	
 		
 	<script type="text/javascript">	
-	//=== SERVER URL			===/
+	//=== SERVER URL===/
 	serverURL = "/";
 	currentNumPlugins = 0;
 	currentServerId = 0;
@@ -45,7 +45,7 @@
 		   	$("#running_plugins").append('<!--PLUGINS GRID-->');
 			for(var i = 0; i < plugins.length; i++)
 			{
-				var plugin = plugins[i].split(',');
+				  var plugin = plugins[i].split(',');
 				  var plugin_name = plugin[0];
 				  var plugin_num_args = plugin[1];
 				  var plugin_id = plugin[2];
@@ -61,12 +61,12 @@
 		   	for(var j = 0; i < plugins.length; i++)
 		   	{
 		   		var plugin = plugins[i].split(',');
-				  var plugin_name = plugin[0];
-				  var plugin_num_args = plugin[1];
-				  var plugin_id = plugin[2];
+				var plugin_name = plugin[0];
+				var plugin_num_args = plugin[1];
+				var plugin_id = plugin[2];
 		   		$("#running_plugins").append('<!--BEGIN Plugin '+plugin_id+'-->');
 		   		
-		   		//--Plugin Scripts	--//
+		   		//--Plugin Scripts--//
 		   		$("#running_plugins").append('<script type="text/javascript">');
 		   		$("#running_plugins").append('//=== plugin '+plugin_id+' dialog properties   ===//');	
 		   		$("#running_plugins").append('$(\'#plugin_'+plugin_id+'_dialog\').dialog({autoOpen:false,show:"scale",width:300,height:300,maxWidth:500,maxHeight:500,scroll:true,position:['+(j*10)+','+(j*10)+'],});');
@@ -171,15 +171,16 @@
 <body>
 	<div id="wrap" >
 		<div class="full">
-			<h1>Olympus Server Manager</h1>
+			<h1>Olympus Server Manager <img src="plugins/test_img.png" alt="Image Load Error" width="40" height="40"> </h1>
 		</div>
 		
 		<div class="full" id="top_nav">	
 			<ul>
 				<li><a href="index.html">Dashboard</a></li>
 				<li><a href="index.html">Configuration</a></li>
-				<li><a href="OlympusPresentation.swf">Slideshow</a></li>	
-				<li><button onclick="show_plugins(2)">CLICK</button></li>
+				
+				<li><button onclick="show_plugins(2)">Plugins List</button></li>
+				
 			</ul>
 		</div>
 		
