@@ -30,6 +30,10 @@
 	currentNumPlugins = 0;
 	currentServerId = 0;
 	
+	//color changing function
+	function custom_UI(id_num){
+	
+	
 	//show plugins(remote_server_id_number)
 	function show_plugins(id_num){
 		currentServerId = id_num;
@@ -203,6 +207,25 @@
 			</ul>
 		</div>
 		
+		<div class="small_content" id="available_plugins">
+			<h3>Operating Plugins</h3>
+			<ul id="available_plugins_data">
+				<img src="cssimg/loading3.gif" alt="loading" />
+				<script type="text/javascript">	
+					$.ajax({
+					   type: "POST",
+					   url: serverURL,
+					   data: "gp",
+					   dataType: "html",
+					   success: function(data){
+					   	$("#available_plugins_data").html(data);
+					   },
+					   error: function(data){$("#available_plugins_data").html("<p>Error loading data</p>")}
+					 });	
+				</script>
+			</ul>
+		</div>
+		
 		<div class="large_content" id="server_list">
 			<h3>Remote Server List</h3>
 			<ul id="server_list_data">
@@ -249,8 +272,12 @@
 				<li><a href="#">About</a></li>
 				<li><a href="#">License</a></li>
 				<li><a href="#">Documentation</a></li>
+				<li><button onclick="custom_UI(1)">Red UI</button></li>
+				<li><button onclick="custom_UI(2)">Green UI</button></li>
+				<li><button onclick="custom_UI(0)">Default UI</button></li>
 			</ul>
 		</div>
+		
 
 		<div class="clear">&nbsp;</div>
 	</div><!--END_GRID-->
