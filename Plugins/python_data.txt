@@ -1,0 +1,31 @@
+python data
+
+Gathered from plugins over 1 minute (5s intervals)
+
+
+RAM
+
+
+Total:   8480911360
+
+Current: 5825384448
+	 5810384896
+	 5395181568
+	 4992831631
+	 4982248175
+	 4983345186
+	 5482251763
+	 5827469312
+	 5991230351
+	 6133002857
+         6141579201
+         6141057138
+
+
+
+HDD
+
+Total: 31859926272
+Current: 13608083456
+
+The HDD space didn't change

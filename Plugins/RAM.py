@@ -2,6 +2,8 @@
 import subprocess
 import ctypes
 import os, platform	
+from time import sleep
+
 def check_system ():
 	print os.name
 	platform.system()
@@ -37,17 +39,21 @@ def winmem():
 check_system() 	
 system = platform.system() #defines os as the general operating system type determined above
 print system
-if system ==  "Windows":#if windows...
-	#import pythoncom
-	#import pywintypes
-	#import datetime
+while bacon <= 5:
+	if system ==  "Windows":#if windows...
+		#import pythoncom
+		#import pywintypes
+		#import datetime
+
+		winmem()	
 	
+		else break
+		sleep(5)
+		bacon ++ 
+		
+if bacon > 5:
+	print "All done!"	
 	
-	
-	
-	winmem()	
-	myfile = file("RAMTEST.txt",'x')
-else break
 
 	
 

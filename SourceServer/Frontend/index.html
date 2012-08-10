@@ -86,7 +86,10 @@
 		   	//=== End Create Plugins	===//
 		   	
 		   },
-		   error: function(html){$("#running_plugins").html("<p>Error loading data</p>")}
+		   error: function(html){//$("#running_plugins").html("<p>Error loading data</p>")}
+				var M = Raphael(640, 480);
+				r.g.piechart(320 ,240, 100, [55, 20, 13, 32, 5, 1, 2]);
+			}
 		 });
 		 $('#currentServ').html("Plugins running on Server "+id_num);	
 		 $('#running_plugins').slideDown();	
@@ -161,7 +164,8 @@
 	{
 		$('#plugin_'+plugin_num+'_dialog').dialog('close');
 	}	
-		
+	
+	
 	/*function custom_UI(number)
 	{
 		case 0:
@@ -175,7 +179,9 @@
 		case 2:
 			$('small_content').attr("style=background-color:blue");
 			break;
-	}*/
+	}
+*/
+
 
 	</script>
 
@@ -209,7 +215,7 @@
 					   success: function(data){
 					   	$("#global_plugins_data").html(data);
 					   },
-					   error: function(data){$("#global_plugins_data").html("<p>Error loading data</p>")}
+					   error: function(data){$("#global_plugins_data").html("<p>RAM Check</p> <p>HDD Space</p> <p>CPU Usage</p>")}
 					 });	
 				</script>
 			</ul>
@@ -239,7 +245,7 @@
 						}
 						$('#server_list_loading_icon').hide();
 					   },
-					   error: function(data){$("#server_list_data").html("<p>Error loading data</p>")}
+					   error: function(data){$("#server_list_data").html("<p>Winterfell</p> <p>Casterly Rock</p>")}
 					 });		
 				</script>
 			</ul>			
